@@ -1,0 +1,21 @@
+{
+  "name": "dekodeinteraktiv/savage-cards",
+  "description": "Card setup for Dekode design framework",
+  "homepage": "https://github.com/DekodeInteraktiv/savage-cards",
+  "type": "wordpress-plugin",
+  "license": "GPL-3.0",
+  "require": {
+    "php": ">=5.5",
+    "composer/installers": "~1.2"
+  },
+  "archive": {
+    "exclude": [
+      ".editorconfig",
+      ".gitignore",
+      "composer.json",
+      "composer.lock",
+      "LICENSE",
+      "phpcs.xml"
+    ]
+  }
+}

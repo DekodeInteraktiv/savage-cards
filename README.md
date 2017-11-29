@@ -1,7 +1,5 @@
-# hogan-cards
-Everything you need to make cards. Basis for the Cards module. 
+# Savage
 
-## Requirements 
-- 
+Hogan + Savage = The Mega Powers!
 
-## Requirements Card module
+## TODO
