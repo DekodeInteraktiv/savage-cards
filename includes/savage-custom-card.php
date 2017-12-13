@@ -2,6 +2,7 @@
 /**
  * Post type and field group for custom cards
  * TODO: move everything to CustomCard class
+ *
  * @package Savage
  */
 
@@ -15,7 +16,6 @@ add_action( 'init', __NAMESPACE__ . '\\register_card_post_type' );
 
 /**
  * Register post type
- *
  */
 function register_card_post_type() {
 	register_post_type( 'savage-custom-card' , array(
@@ -51,202 +51,70 @@ function register_card_post_type() {
 	) );
 }
 
-if( function_exists('acf_add_local_field_group') ):
+if ( function_exists( 'acf_add_local_field_group' ) ) :
 
-acf_add_local_field_group( array(
-	'key' => 'group_59ef00baddca2',
-	'title' => 'Kort',
-	'fields' => array(
-		array(
-			'key' => 'field_5a296c42b5d6e',
-			'label' => 'Tittel',
-			'name' => 'title',
-			'type' => 'text',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '',
-				'class' => '',
-				'id' => '',
-			),
-			'default_value' => '',
-			'placeholder' => '',
-			'prepend' => '',
-			'append' => '',
-			'maxlength' => '',
-		),
-		array(
-			'key' => 'field_5a296c54b5d6f',
-			'label' => 'Tagline',
-			'name' => 'tagline',
-			'type' => 'text',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '',
-				'class' => '',
-				'id' => '',
-			),
-			'default_value' => '',
-			'placeholder' => '',
-			'prepend' => '',
-			'append' => '',
-			'maxlength' => '',
-		),
-		array(
-			'key' => 'field_5a296c5eb5d70',
-			'label' => 'Tekst',
-			'name' => 'text',
-			'type' => 'wysiwyg',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '',
-				'class' => '',
-				'id' => '',
-			),
-			'default_value' => '',
-			'tabs' => 'all',
-			'toolbar' => 'hogan',
-			'media_upload' => 0,
-			'delay' => 0,
-		),
-		array(
-			'key' => 'field_5a296d718032f',
-			'label' => 'Lenke til',
-			'name' => 'link',
-			'type' => 'link',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '50',
-				'class' => '',
-				'id' => '',
-			),
-			'return_format' => 'url',
-		),
-	),
-	'location' => array(
-		array(
+	acf_add_local_field_group( array(
+		'key' => 'group_59ef00baddca2',
+		'title' => 'Kort (ikke klar til bruk)',
+		'fields' => array(
 			array(
-				'param' => 'post_type',
-				'operator' => '==',
-				'value' => 'savage-custom-card',
+				'key' => 'field_5a296c42b5d6e',
+				'label' => 'Tittel',
+				'name' => 'title',
+				'type' => 'text',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'maxlength' => '',
 			),
-		),
-	),
-	'menu_order' => 0,
-	'position' => 'normal',
-	'style' => 'default',
-	'label_placement' => 'top',
-	'instruction_placement' => 'label',
-	'hide_on_screen' => '',
-	'active' => 1,
-	'description' => '',
-));
-
-endif;
-
-if( function_exists('acf_add_local_field_group') ):
-
-acf_add_local_field_group(array(
-	'key' => 'group_59ef00baddca2',
-	'title' => 'Kort',
-	'fields' => array(
-		array(
-			'key' => 'field_5a296c42b5d6e',
-			'label' => 'Tittel',
-			'name' => 'title',
-			'type' => 'text',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '',
-				'class' => '',
-				'id' => '',
-			),
-			'default_value' => '',
-			'placeholder' => '',
-			'prepend' => '',
-			'append' => '',
-			'maxlength' => '',
-		),
-		array(
-			'key' => 'field_5a296c54b5d6f',
-			'label' => 'Tagline',
-			'name' => 'tagline',
-			'type' => 'text',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '',
-				'class' => '',
-				'id' => '',
-			),
-			'default_value' => '',
-			'placeholder' => '',
-			'prepend' => '',
-			'append' => '',
-			'maxlength' => '',
-		),
-		array(
-			'key' => 'field_5a296c5eb5d70',
-			'label' => 'Tekst',
-			'name' => 'text',
-			'type' => 'wysiwyg',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '',
-				'class' => '',
-				'id' => '',
-			),
-			'default_value' => '',
-			'tabs' => 'all',
-			'toolbar' => 'hogan',
-			'media_upload' => 0,
-			'delay' => 0,
-		),
-		array(
-			'key' => 'field_5a296d718032f',
-			'label' => 'Lenke til',
-			'name' => 'link',
-			'type' => 'link',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '50',
-				'class' => '',
-				'id' => '',
-			),
-			'return_format' => 'url',
-		),
-	),
-	'location' => array(
-		array(
 			array(
-				'param' => 'post_type',
-				'operator' => '==',
-				'value' => 'savage-custom-card',
+				'key' => 'field_5a296c54b5d6f',
+				'label' => 'Tagline',
+				'name' => 'tagline',
+				'type' => 'text',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'default_value' => '',
+				'maxlength' => '',
+			),
+			array(
+				'key' => 'field_5a296c5eb5d70',
+				'label' => 'Tekst',
+				'name' => 'text',
+				'type' => 'wysiwyg',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'tabs' => 'all',
+				'toolbar' => 'hogan',
+				'media_upload' => 0,
+				'delay' => 0,
+			),
+			array(
+				'key' => 'field_5a296d718032f',
+				'label' => 'Lenke til',
+				'name' => 'link',
+				'type' => 'link',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array(
+					'width' => '50',
+					'class' => '',
+					'id' => '',
+				),
+				'return_format' => 'url',
 			),
 		),
-	),
-	'menu_order' => 0,
-	'position' => 'normal',
-	'style' => 'default',
-	'label_placement' => 'top',
-	'instruction_placement' => 'label',
-	'hide_on_screen' => '',
-	'active' => 1,
-	'description' => '',
-));
-
+		'location' => array(
+			array(
+				array(
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'savage-custom-card',
+				),
+			),
+		),
+	));
 endif;
