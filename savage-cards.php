@@ -3,7 +3,7 @@
  * Plugin Name: Savage: Cards
  * Plugin URI: https://github.com/dekodeinteraktiv/savage-cards
  * Description: Card setup plugin
- * Version: 0.1
+ * Version: 0.1-dev
  * Author: Dekode
  * Author URI: https://dekode.no
  * License: GPL-3.0
@@ -22,8 +22,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-require_once 'class-cards.php';
-
 add_action( 'plugins_loaded', __NAMESPACE__ . '\\savage_load_textdomain' );
 
 /**
@@ -33,4 +31,6 @@ function savage_load_textdomain() {
 	\load_plugin_textdomain( 'savage-cards', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
 
-\Dekode\Savage\Cards::instance();
+//require_once 'includes/class-card.php';
+//require_once 'includes/class-custom-card.php';
+require_once 'includes/savage-custom-card.php';
