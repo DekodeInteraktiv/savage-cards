@@ -1,7 +1,8 @@
 <?php
 /**
- * Plugin Name: Savage: Cards
+ * Plugin Name: Savage Cards
  * Plugin URI: https://github.com/dekodeinteraktiv/savage-cards
+ * GitHub Plugin URI: https://github.com/dekodeinteraktiv/savage-cards
  * Description: Card setup plugin
  * Version: 0.1-dev
  * Author: Dekode
@@ -16,21 +17,29 @@
  * @author Dekode
  */
 
-namespace Dekode\Savage\Cards;
+declare( strict_types = 1 );
+namespace Dekode\Savage;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-add_action( 'plugins_loaded', __NAMESPACE__ . '\\savage_load_textdomain' );
+
+require_once 'includes/class-card.php';
+require_once 'includes/class-core.php';
+require_once 'includes/helper-functions.php';
+
+$_dir = dirname( plugin_basename( __FILE__ ) );
+$_url = plugin_dir_url( __FILE__ );
+
+\Dekode\Savage\Core::get_instance( $_dir, $_url );
+
+add_action( 'savage/register_cards', __NAMESPACE__ . '\\savage_manual_card' );
 
 /**
- * Register module text domain
+ * Register manual card
  */
-function savage_load_textdomain() {
-	\load_plugin_textdomain( 'savage-cards', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+function savage_manual_card() {
+	require_once 'includes/class-custom-card.php';
+	\savage_register_card( new \Dekode\Savage\CustomCard() );
 }
-
-//require_once 'includes/class-card.php';
-//require_once 'includes/class-custom-card.php';
-require_once 'includes/savage-custom-card.php';
