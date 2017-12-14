@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Savage: Cards\n"
-"POT-Creation-Date: 2017-11-29 13:35+0100\n"
-"PO-Revision-Date: 2017-11-29 13:42+0100\n"
+"Project-Id-Version: Savage Cards\n"
+"POT-Creation-Date: 2017-12-14 09:45+0100\n"
+"PO-Revision-Date: 2017-12-14 09:46+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 2.0.5\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
@@ -21,64 +21,94 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: custom-card.php:24
+#: includes/class-custom-card.php:43
 msgctxt "post type general name"
 msgid "Manual cards"
 msgstr "Kort"
 
-#: custom-card.php:25
+#: includes/class-custom-card.php:44
 msgctxt "post type singular name"
 msgid "Manual cards"
 msgstr "Kort"
 
-#: custom-card.php:26
+#: includes/class-custom-card.php:45
 msgctxt "admin menu"
 msgid "Manual cards"
 msgstr "Kort"
 
-#: custom-card.php:27
+#: includes/class-custom-card.php:46
 msgctxt "add new on admin bar"
 msgid "Manual cards"
 msgstr "Lag kort"
 
-#: custom-card.php:28
+#: includes/class-custom-card.php:47
 msgid "Add new"
 msgstr "Lag nytt kort"
 
-#: custom-card.php:29 custom-card.php:30
+#: includes/class-custom-card.php:48 includes/class-custom-card.php:49
 msgid "Add"
 msgstr "Legg til"
 
-#: custom-card.php:31
+#: includes/class-custom-card.php:50
 msgid "Edit"
 msgstr "Rediger"
 
-#: custom-card.php:32
+#: includes/class-custom-card.php:51
 msgid "Show"
 msgstr "Vis"
 
-#: custom-card.php:33
+#: includes/class-custom-card.php:52
 msgid "Manual cards"
 msgstr "Kort"
 
-#: custom-card.php:34
+#: includes/class-custom-card.php:53
 msgid "Search"
 msgstr "Søk"
 
-#: custom-card.php:35
+#: includes/class-custom-card.php:54
 msgid "Parent:"
 msgstr ""
 
-#: custom-card.php:36
+#: includes/class-custom-card.php:55
 msgid "Nothing found."
 msgstr ""
 
-#: custom-card.php:37
+#: includes/class-custom-card.php:56
 msgid "Nothing found in trashcan."
 msgstr ""
 
+#: includes/class-custom-card.php:82
+msgid "Card content (not ready for use)"
+msgstr ""
+
+#: includes/class-custom-card.php:86
+msgid "Card title"
+msgstr ""
+
+#: includes/class-custom-card.php:89
+msgid "This is the title showed on the card"
+msgstr ""
+
+#: includes/class-custom-card.php:95
+msgid "Tagline"
+msgstr ""
+
+#: includes/class-custom-card.php:105
+msgid "Text"
+msgstr ""
+
+#: includes/class-custom-card.php:115
+msgid "Link to"
+msgstr ""
+
+#: includes/helper-functions.php:24
+msgid ""
+"Cards have already been registered. Please run savage_register_card() on "
+"action savage/register_cards."
+msgstr ""
+
 #. Plugin Name of the plugin/theme
-msgid "Savage: Cards"
+msgid "Savage Cards"
 msgstr "Savage: Kort"
 
 #. Plugin URI of the plugin/theme
