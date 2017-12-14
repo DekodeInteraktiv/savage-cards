@@ -40,7 +40,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		 */
 		public function register_card_post_type() {
 
-			register_post_type( 'savage-custom-card' , [
+			register_post_type( 'savage_custom_card' , [
 				'labels' => [
 					'name'               => esc_html_x( 'Manual cards', 'post type general name', 'savage-cards' ),
 					'singular_name'      => esc_html_x( 'Manual cards', 'post type singular name', 'savage-cards' ),
@@ -80,7 +80,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		public function register_field_group() {
 
 			acf_add_local_field_group( [
-				'key' => 'savage-custom-card-group',
+				'key' => 'savage_custom_card_group',
 				'title' => __( 'Card content (not ready for use)', 'savage-cards' ),
 				'fields' => [
 					[
