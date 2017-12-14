@@ -110,7 +110,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 						'instructions' => '',
 						'required' => 0,
 						'tabs' => apply_filters( 'savage/card/custom/content/tabs', 'all' ),
-						'toolbar' => apply_filters( 'savage/card/custom/content/toolbar', 'savage_custom_card' ),
+						'toolbar' => apply_filters( 'savage/card/custom/content/toolbar', 'savage_card_toolbar' ),
 						'media_upload' => 0,
 					],
 					[
@@ -131,7 +131,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 						[
 							'param' => 'post_type',
 							'operator' => '==',
-							'value' => 'savage-custom-card',
+							'value' => 'savage_custom_card',
 						],
 					],
 				],
@@ -146,7 +146,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		 */
 		public function append_card_toolbar( array $toolbars ) : array {
 
-			$toolbars['savage_custom_card'] = [
+			$toolbars['savage_card_toolbar'] = [
 				1 => [
 					'bold',
 					'italic',
