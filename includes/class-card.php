@@ -25,17 +25,19 @@ abstract class Card {
 	public $name;
 
 	/**
+	 * Module field key prefix.
+	 *
+	 * @var string $field_key
+	 */
+	public $field_key;
+
+	/**
 	 * Constructor.
 	 */
 	public function __construct() {
 
 		$this->name = strtolower( substr( strrchr( get_class( $this ), '\\' ), 1 ) );
-	}
+		$this->field_key = 'hogan_module_' . $this->name;
 
-	/**
-	 * Field definitions for card.
-	 *
-	 * @return array $fields Fields for this card
-	 */
-	abstract protected function get_fields() : array;
+	}
 }
