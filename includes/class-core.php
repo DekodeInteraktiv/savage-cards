@@ -160,9 +160,9 @@ class Core {
 				'type' => 'select',
 				'required' => 0,
 				'choices' => apply_filters( 'savage/card/meta/tagline_types', [
-					'none' => __( 'Ingen', 'savage-cards' ),
+					'none' => __( 'No tagline', 'savage-cards' ),
 					'auto' => __( 'Auto', 'savage-cards' ),
-					'manual' => __( 'Manuell', 'savage-cards' ),
+					'manual' => __( 'Manual', 'savage-cards' ),
 				] ),
 				'allow_null' => 0,
 				'multiple' => 0,

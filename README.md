@@ -23,9 +23,9 @@ Meta fields filters:
 ```
 //default values
 [
-	'none' => __( 'Ingen', 'savage-cards' ),
+	'none' => __( 'No tagline', 'savage-cards' ),
 	'auto' => __( 'Auto', 'savage-cards' ),
-	'manual' => __( 'Manuell', 'savage-cards' ),
+	'manual' => __( 'Manual', 'savage-cards' ),
 ]
 ```
 - `savage/card/meta/locations` - for adding locations to the ACF field group.
