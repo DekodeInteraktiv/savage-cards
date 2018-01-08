@@ -241,7 +241,7 @@ class Core {
 			'send-trackbacks',
 		];
 
-		// Include custom fields before and after flexible content field.
+		// Include custom fields before and after default fields.
 		$field_group_fields = array_merge( $fields_before, $meta_fields, $fields_after );
 
 		acf_add_local_field_group(
