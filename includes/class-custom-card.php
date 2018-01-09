@@ -84,50 +84,6 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 				'title' => __( 'Card content', 'savage-cards' ),
 				'fields' => [
 					[
-						'key' => $this->field_key . '_background',
-						'label' => __( 'Card background', 'savage-cards' ),
-						'name' => 'card_background',
-						'type' => 'select',
-						'instructions' => '',
-						'conditional_logic' => 0,
-						'wrapper' => [
-							'width' => '50',
-						],
-						'choices' => [
-							'bg_default' => __( 'Default', 'savage-cards' ),
-							'bg_color' => __( 'Background color', 'savage-cards' ),
-						],
-						'default_value' => [],
-						'ui' => 0,
-						'ajax' => 0,
-						'return_format' => 'value',
-					],
-					[
-						'key' => $this->field_key . '_color',
-						'label' => __( 'Select color', 'savage-cards' ),
-						'name' => 'bg_color',
-						'type' => 'select',
-						'instructions' => '',
-						'required' => 1,
-						'conditional_logic' => [
-							[
-								[
-									'field' => $this->field_key . '_background',
-									'operator' => '==',
-									'value' => 'bg_color',
-								],
-							],
-						],
-						'wrapper' => [
-							'width' => '50',
-						],
-						'choices' => apply_filters( 'savage/card/custom/bg_color_options', [] ),
-						'default_value' => [],
-						'ui' => 0,
-						'ajax' => 0,
-						'return_format' => 'value',
-					],
-					[
 						'key' => $this->field_key . '_link',
 						'label' => __( 'Card link', 'savage-cards' ),
 						'name' => 'card_link',
@@ -135,6 +91,21 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 						'instructions' => '',
 						'required' => 1,
 						'return_format' => 'array',
+					],
+					[
+						'key' => $this->field_key . '_background',
+						'label' => __( 'Card background color', 'savage-cards' ),
+						'name' => 'card_background',
+						'type' => 'select',
+						'instructions' => '',
+						'conditional_logic' => 0,
+						'choices' => apply_filters( 'savage/card/custom/bg_color_options', [
+							'bg_default' => __( 'Default', 'savage-cards' ),
+						] ),
+						'default_value' => [],
+						'ui' => 0,
+						'ajax' => 0,
+						'return_format' => 'value',
 					],
 					[
 						'key' => $this->field_key . '_flex',
@@ -152,14 +123,14 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 								'sub_fields' => [
 									[
 										'key' => $this->field_key . '_flex_standard_img',
-										'label' => __( 'Bilde', 'savage-cards' ),
+										'label' => __( 'Custom card image', 'savage-cards' ),
 										'name' => 'image',
 										'type' => 'button_group',
 										'instructions' => __( 'Uses featured image', 'savage-cards' ),
 										'required' => 0,
 										'choices' => apply_filters( 'savage/card/custom/image_options', [
-											'false' => __( 'Uten bilde', 'savage-cards' ),
-											'true' => __( 'Med bilde', 'savage-cards' ),
+											'false' => __( 'No image', 'savage-cards' ),
+											'true' => __( 'Show image', 'savage-cards' ),
 										]),
 										'allow_null' => 0,
 										'layout' => 'horizontal',
@@ -167,7 +138,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 									],
 									[
 										'key' => $this->field_key . '_flex_standard_tagline',
-										'label' => __( 'Tagline', 'savage-cards' ),
+										'label' => __( 'Custom card tagline', 'savage-cards' ),
 										'name' => 'tagline',
 										'type' => 'text',
 										'instructions' => '',
@@ -182,7 +153,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 									],
 									[
 										'key' => $this->field_key . '_flex_standard_title',
-										'label' => __( 'Tittel', 'savage-cards' ),
+										'label' => __( 'Custom card title', 'savage-cards' ),
 										'name' => 'title',
 										'type' => 'text',
 										'instructions' => '',
@@ -198,7 +169,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 									],
 									[
 										'key' => $this->field_key . '_flex_standard_text',
-										'label' => __( 'Tekst', 'savage-cards' ),
+										'label' => __( 'Custom card text', 'savage-cards' ),
 										'name' => 'text',
 										'type' => 'textarea',
 										'instructions' => '',
@@ -211,7 +182,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 								'max' => '',
 							],
 						],
-						'button_label' => __( 'Velg type kort', 'savage-cards' ),
+						'button_label' => __( 'Select a card type', 'savage-cards' ),
 						'min' => 1,
 						'max' => 1,
 					],
