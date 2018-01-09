@@ -33,7 +33,10 @@ Meta fields filters:
 - `savage/card/field_group/fields_after` - add new fields to group after existing fields.
 
 Custom card filters
-- `savage/card/custom/content/tabs` - change tabs in custom card wysiwyg field.
-- `savage/card/custom/content/toolbar` - change toolbar custom card wysiwyg field.
+- `savage/card/custom/bg_color_options` - filter for adding themes's color palette to card bg_color options.
+- `savage/card/custom/image_options` - filter for changing image options on custom card.
+
+## Adding custom card layouts
+
 
 ## Changelog
