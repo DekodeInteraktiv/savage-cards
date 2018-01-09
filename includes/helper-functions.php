@@ -29,3 +29,29 @@ function savage_register_card( \Dekode\Savage\Card $card ) {
 		return $cards;
 	} );
 }
+
+/**
+ * Get card markup
+ *
+ * @param array $args Card options.
+ */
+function savage_card( array $args = [] ) {
+	$args = wp_parse_args( $args, [
+		'id'   => 0,
+		'size' => 'small',
+		'type' => 'defaultcard',
+	] );
+
+	if ( 0 === $args['id'] ) {
+		return;
+	}
+
+	$card = \Dekode\Savage\Core::get_instance()->get_card( $args['type'] );
+
+	if ( $card instanceof Dekode\Savage\Card ) {
+		echo $card->get_markup( $args ); // WPCS: XSS OK.
+	} elseif ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+		// Translators: %s: card type.
+		printf( esc_html__( 'Missing savage card type - %s', 'savage-cards' ), esc_html( $args['type'] ) );
+	}
+}

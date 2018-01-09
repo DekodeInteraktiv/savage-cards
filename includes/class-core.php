@@ -14,27 +14,26 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
  * Core savage class.
  */
 class Core {
-
-	/**
-	 * Plugin base directory
-	 *
-	 * @var string $dir
-	 */
-	public $dir;
-
-	/**
-	 * Plugin base URL
-	 *
-	 * @var string $url
-	 */
-	public $url;
-
 	/**
 	 * Cards.
 	 *
 	 * @var array $_cards
 	 */
 	private $_cards = [];
+
+	/**
+	 * Default card layouts.
+	 *
+	 * @var array $_default_card_post_types
+	 */
+	private $_default_card_post_types;
+
+	/**
+	 * Default card layout.
+	 *
+	 * @var string $_default_card
+	 */
+	private $_default_card;
 
 	/**
 	 * Hold the class instance.
@@ -46,48 +45,46 @@ class Core {
 	/**
 	 * Core constructor.
 	 *
-	 * @param string $dir Plugin base directory.
-	 * @param string $url Plugin base url.
 	 * @return void
 	 */
-	private function __construct( $dir, $url ) {
-		$this->dir = $dir;
-		$this->url = $url;
-
-		// Load text domain on plugins_loaded.
-		add_action( 'plugins_loaded', [ $this, 'load_textdomain' ] );
+	private function __construct() {
+		$this->_default_card_post_types = (array) apply_filters( 'savage/default_card_post_types', [ 'post', 'page' ] );
+		$this->_default_card            = (string) apply_filters( 'savage/default_card', 'defaultcard' );
 
 		// Register card field group.
 		add_action( 'acf/include_fields', [ $this, 'register_card_meta_field_group' ] );
 
-		// Register cards.
-		add_action( 'plugins_loaded', [ $this, 'register_cards' ] );
+		// Register cards (need to be after plugins/themes has applied savage card filter).
+		add_action( 'plugins_loaded', [ $this, 'register_cards' ], 50 );
 
+		add_action( 'savage/register_cards', [ $this, 'register_core_cards' ] );
 	}
 
 	/**
 	 * Get Core instance.
 	 *
-	 * @param string $dir Plugin base directory.
-	 * @param string $url Plugin base url.
 	 * @return Core Core instance.
 	 */
-	public static function get_instance( string $dir = '', string $url = '' ) : Core {
+	public static function get_instance() : Core {
 
 		if ( null === self::$_instance ) {
-			self::$_instance = new Core( $dir, $url );
+			self::$_instance = new Core();
 		}
 
 		return self::$_instance;
 	}
 
 	/**
-	 * Load textdomain for translations.
+	 * Register core cards
 	 *
 	 * @return void
 	 */
-	public function load_textdomain() {
-		load_plugin_textdomain( 'savage-cards', false, $this->dir . '/languages' );
+	public function register_core_cards() {
+		require_once 'class-defaultcard.php';
+		require_once 'class-customcard.php';
+
+		savage_register_card( new \Dekode\Savage\DefaultCard() );
+		savage_register_card( new \Dekode\Savage\CustomCard() );
 	}
 
 	/**
@@ -254,6 +251,7 @@ class Core {
 			]
 		);
 	}
+
 	/**
 	 * Register cards from filter into core plugin.
 	 *
@@ -273,5 +271,18 @@ class Core {
 		}
 
 		do_action( 'savage/cards_registered' );
+	}
+
+	/**
+	 * Get cards.
+	 *
+	 * @param string $type Card type.
+	 */
+	public function get_card( $type ) {
+		if ( in_array( $type, $this->_default_card_post_types, true ) ) {
+			$type = $this->_default_card;
+		}
+
+		return isset( $this->_cards[ $type ] ) ? $this->_cards[ $type ] : false;
 	}
 }
