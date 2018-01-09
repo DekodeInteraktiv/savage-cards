@@ -32,6 +32,9 @@ Meta fields filters:
 - `savage/card/field_group/fields_before` - add new fields to group before existing fields.
 - `savage/card/field_group/fields_after` - add new fields to group after existing fields.
 
+- `savage/default_card_post_types` - post types that should have the default card
+- `savage/default_card` - default card type
+
 Custom card filters
 - `savage/card/custom/content/tabs` - change tabs in custom card wysiwyg field.
 - `savage/card/custom/content/toolbar` - change toolbar custom card wysiwyg field.
