@@ -36,7 +36,7 @@ abstract class Card {
 	 */
 	public function __construct() {
 
-		$this->name = strtolower( substr( strrchr( get_class( $this ), '\\' ), 1 ) );
+		$this->name      = strtolower( substr( strrchr( get_class( $this ), '\\' ), 1 ) );
 		$this->field_key = 'savage_' . $this->name;
 
 	}
