@@ -40,6 +40,6 @@ add_action( 'savage/register_cards', __NAMESPACE__ . '\\savage_manual_card' );
  * Register manual card
  */
 function savage_manual_card() {
-	require_once 'includes/class-custom-card.php';
+	require_once 'includes/class-customcard.php';
 	\savage_register_card( new \Dekode\Savage\CustomCard() );
 }
