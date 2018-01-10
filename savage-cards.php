@@ -34,12 +34,12 @@ $_url = plugin_dir_url( __FILE__ );
 
 \Dekode\Savage\Core::get_instance( $_dir, $_url );
 
-add_action( 'savage/register_cards', __NAMESPACE__ . '\\savage_manual_card' );
+add_action( 'savage/register_cards', __NAMESPACE__ . '\\savage_custom_card' );
 
 /**
- * Register manual card
+ * Register custom card
  */
-function savage_manual_card() {
+function savage_custom_card() {
 	require_once 'includes/class-custom-card.php';
 	\savage_register_card( new \Dekode\Savage\CustomCard() );
 }

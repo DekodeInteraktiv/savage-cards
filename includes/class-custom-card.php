@@ -1,6 +1,6 @@
 <?php
 /**
- * Custom Card (manual card) class
+ * Custom Card class
  *
  * @package Savage
  */
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode\\Savage\\Card' ) ) {
 
 	/**
-	 * Manual card class.
+	 * Custom card class.
 	 *
 	 * @extends Card base class.
 	 */
@@ -42,16 +42,16 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 
 			register_post_type( 'savage_custom_card' , [
 				'labels' => [
-					'name'               => esc_html_x( 'Manual cards', 'post type general name', 'savage-cards' ),
-					'singular_name'      => esc_html_x( 'Manual cards', 'post type singular name', 'savage-cards' ),
-					'menu_name'          => esc_html_x( 'Manual cards', 'admin menu', 'savage-cards' ),
-					'name_admin_bar'     => esc_html_x( 'Manual cards', 'add new on admin bar', 'savage-cards' ),
+					'name'               => esc_html_x( 'Custom cards', 'post type general name', 'savage-cards' ),
+					'singular_name'      => esc_html_x( 'Custom cards', 'post type singular name', 'savage-cards' ),
+					'menu_name'          => esc_html_x( 'Custom cards', 'admin menu', 'savage-cards' ),
+					'name_admin_bar'     => esc_html_x( 'Custom cards', 'add new on admin bar', 'savage-cards' ),
 					'add_new'            => esc_html__( 'Add new', 'savage-cards' ),
 					'add_new_item'       => esc_html__( 'Add', 'savage-cards' ),
 					'new_item'           => esc_html__( 'Add', 'savage-cards' ),
 					'edit_item'          => esc_html__( 'Edit', 'savage-cards' ),
 					'view_item'          => esc_html__( 'Show', 'savage-cards' ),
-					'all_items'          => esc_html__( 'Manual cards', 'savage-cards' ),
+					'all_items'          => esc_html__( 'Custom cards', 'savage-cards' ),
 					'search_items'       => esc_html__( 'Search', 'savage-cards' ),
 					'parent_item_colon'  => esc_html__( 'Parent:', 'savage-cards' ),
 					'not_found'          => esc_html__( 'Nothing found.', 'savage-cards' ),
@@ -73,7 +73,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		}
 
 		/**
-		 * Register manual card field group
+		 * Register custom card field group
 		 *
 		 * @package Savage
 		 */
@@ -109,7 +109,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 					],
 					[
 						'key' => $this->field_key . '_flex',
-						'label' => __( 'Card content', 'savage-cards' ),
+						'label' => __( 'Card fields', 'savage-cards' ),
 						'name' => 'card_content_flex',
 						'type' => 'flexible_content',
 						'instructions' => '',
@@ -121,21 +121,6 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 								'label' => __( 'Standard', 'savage-cards' ),
 								'display' => 'block',
 								'sub_fields' => [
-									[
-										'key' => $this->field_key . '_flex_standard_img',
-										'label' => __( 'Custom card image', 'savage-cards' ),
-										'name' => 'image',
-										'type' => 'button_group',
-										'instructions' => __( 'Uses featured image', 'savage-cards' ),
-										'required' => 0,
-										'choices' => apply_filters( 'savage/card/custom/image_options', [
-											'false' => __( 'No image', 'savage-cards' ),
-											'true' => __( 'Show image', 'savage-cards' ),
-										]),
-										'allow_null' => 0,
-										'layout' => 'horizontal',
-										'return_format' => 'value',
-									],
 									[
 										'key' => $this->field_key . '_flex_standard_tagline',
 										'label' => __( 'Custom card tagline', 'savage-cards' ),
