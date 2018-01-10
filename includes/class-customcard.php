@@ -20,17 +20,23 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 	 * @extends Card base class.
 	 */
 	class CustomCard extends Card {
+		/**
+		 * Post type key
+		 *
+		 * @var string $post_type
+		 */
+		private $post_type;
 
 		/**
 		 * Card constructor.
 		 */
 		public function __construct() {
-
+			$this->post_type = 'savage_custom_card';
 			$this->register_card_post_type();
 			add_filter( 'acf/fields/wysiwyg/toolbars', [ $this, 'append_card_toolbar' ] );
 			add_action( 'acf/include_fields', [ $this, 'register_field_group' ] );
 
-			parent::__construct();
+			parent::__construct( $this->post_type );
 		}
 
 		/**
@@ -40,7 +46,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		 */
 		public function register_card_post_type() {
 
-			register_post_type( 'savage_custom_card', [
+			register_post_type( $this->post_type, [
 				'labels'              => [
 					'name'               => esc_html_x( 'Manual cards', 'post type general name', 'savage-cards' ),
 					'singular_name'      => esc_html_x( 'Manual cards', 'post type singular name', 'savage-cards' ),
@@ -80,7 +86,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		public function register_field_group() {
 
 			acf_add_local_field_group( [
-				'key'      => 'savage_custom_card_group',
+				'key'      => $this->post_type . '_group',
 				'title'    => __( 'Card content (not ready for use)', 'savage-cards' ),
 				'fields'   => [
 					[
@@ -131,7 +137,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 						[
 							'param'    => 'post_type',
 							'operator' => '==',
-							'value'    => 'savage_custom_card',
+							'value'    => $this->post_type,
 						],
 					],
 				],
