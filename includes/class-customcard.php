@@ -1,6 +1,6 @@
 <?php
 /**
- * Custom Card (manual card) class
+ * Custom Card class
  *
  * @package Savage
  */
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode\\Savage\\Card' ) ) {
 
 	/**
-	 * Manual card class.
+	 * Custom card class.
 	 *
 	 * @extends Card base class.
 	 */
@@ -48,16 +48,16 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 
 			register_post_type( $this->post_type, [
 				'labels'              => [
-					'name'               => esc_html_x( 'Manual cards', 'post type general name', 'savage-cards' ),
-					'singular_name'      => esc_html_x( 'Manual cards', 'post type singular name', 'savage-cards' ),
-					'menu_name'          => esc_html_x( 'Manual cards', 'admin menu', 'savage-cards' ),
-					'name_admin_bar'     => esc_html_x( 'Manual cards', 'add new on admin bar', 'savage-cards' ),
+					'name'               => esc_html_x( 'Custom cards', 'post type general name', 'savage-cards' ),
+					'singular_name'      => esc_html_x( 'Custom cards', 'post type singular name', 'savage-cards' ),
+					'menu_name'          => esc_html_x( 'Custom cards', 'admin menu', 'savage-cards' ),
+					'name_admin_bar'     => esc_html_x( 'Custom cards', 'add new on admin bar', 'savage-cards' ),
 					'add_new'            => esc_html__( 'Add new', 'savage-cards' ),
 					'add_new_item'       => esc_html__( 'Add', 'savage-cards' ),
 					'new_item'           => esc_html__( 'Add', 'savage-cards' ),
 					'edit_item'          => esc_html__( 'Edit', 'savage-cards' ),
 					'view_item'          => esc_html__( 'Show', 'savage-cards' ),
-					'all_items'          => esc_html__( 'Manual cards', 'savage-cards' ),
+					'all_items'          => esc_html__( 'Custom cards', 'savage-cards' ),
 					'search_items'       => esc_html__( 'Search', 'savage-cards' ),
 					'parent_item_colon'  => esc_html__( 'Parent:', 'savage-cards' ),
 					'not_found'          => esc_html__( 'Nothing found.', 'savage-cards' ),
@@ -79,69 +79,119 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		}
 
 		/**
-		 * Register manual card field group
+		 * Register custom card field group
 		 *
 		 * @package Savage
 		 */
 		public function register_field_group() {
 
-			acf_add_local_field_group( [
-				'key'      => $this->post_type . '_group',
-				'title'    => __( 'Card content (not ready for use)', 'savage-cards' ),
-				'fields'   => [
-					[
-						'key'          => $this->field_key . '_title',
-						'label'        => __( 'Card title', 'savage-cards' ),
-						'name'         => 'card_title',
-						'type'         => 'text',
-						'instructions' => __( 'This is the title showed on the card', 'savage-cards' ),
-						'required'     => 0,
-						'maxlength'    => '',
-					],
-					[
-						'key'           => $this->field_key . '_tagline',
-						'label'         => __( 'Tagline', 'savage-cards' ),
-						'name'          => 'card_tagline',
-						'type'          => 'text',
-						'instructions'  => '',
-						'required'      => 0,
-						'default_value' => '',
-						'maxlength'     => '',
-					],
-					[
-						'key'          => $this->field_key . '_formatted_text',
-						'label'        => __( 'Text', 'savage-cards' ),
-						'name'         => 'card_text',
-						'type'         => 'wysiwyg',
-						'instructions' => '',
-						'required'     => 0,
-						'tabs'         => apply_filters( 'savage/card/custom/content/tabs', 'all' ),
-						'toolbar'      => apply_filters( 'savage/card/custom/content/toolbar', 'savage_card_toolbar' ),
-						'media_upload' => 0,
-					],
-					[
-						'key'           => $this->field_key . '_link',
-						'label'         => __( 'Link to', 'savage-cards' ),
-						'name'          => 'card_link',
-						'type'          => 'link',
-						'instructions'  => '',
-						'required'      => 0,
-						'wrapper'       => [
-							'width' => '50',
-						],
-						'return_format' => 'array',
-					],
-				],
-				'location' => [
-					[
+			acf_add_local_field_group(
+				[
+					'key'      => $this->post_type . '_group',
+					'title'    => __( 'Card content', 'savage-cards' ),
+					'fields'   => [
 						[
-							'param'    => 'post_type',
-							'operator' => '==',
-							'value'    => $this->post_type,
+							'key'           => $this->field_key . '_link',
+							'label'         => __( 'Card link', 'savage-cards' ),
+							'name'          => 'card_link',
+							'type'          => 'link',
+							'instructions'  => '',
+							'required'      => 1,
+							'return_format' => 'array',
+						],
+						[
+							'key'               => $this->field_key . '_background',
+							'label'             => __( 'Card background color', 'savage-cards' ),
+							'name'              => 'card_background',
+							'type'              => 'select',
+							'instructions'      => '',
+							'conditional_logic' => 0,
+							'choices'           => apply_filters(
+								'savage/card/custom/bg_color_options', [
+									'bg_default' => __( 'Default', 'savage-cards' ),
+								]
+							),
+							'default_value'     => [],
+							'ui'                => 0,
+							'ajax'              => 0,
+							'return_format'     => 'value',
+						],
+						[
+							'key'          => $this->field_key . '_flex',
+							'label'        => __( 'Card fields', 'savage-cards' ),
+							'name'         => 'card_content_flex',
+							'type'         => 'flexible_content',
+							'instructions' => '',
+							'required'     => 1,
+							'layouts'      => [
+								[
+									'key'        => $this->field_key . '_flex_standard',
+									'name'       => 'card_standard',
+									'label'      => __( 'Standard', 'savage-cards' ),
+									'display'    => 'block',
+									'sub_fields' => [
+										[
+											'key'          => $this->field_key . '_flex_standard_tagline',
+											'label'        => __( 'Custom card tagline', 'savage-cards' ),
+											'name'         => 'tagline',
+											'type'         => 'text',
+											'instructions' => '',
+											'required'     => 0,
+											'conditional_logic' => 0,
+											'wrapper'      => [
+												'width' => '60',
+											],
+											'default_value' => '',
+											'placeholder'  => '',
+											'maxlength'    => '',
+										],
+										[
+											'key'          => $this->field_key . '_flex_standard_title',
+											'label'        => __( 'Custom card title', 'savage-cards' ),
+											'name'         => 'title',
+											'type'         => 'text',
+											'instructions' => '',
+											'required'     => 1,
+											'wrapper'      => [
+												'width' => '60',
+											],
+											'default_value' => '',
+											'placeholder'  => '',
+											'prepend'      => '',
+											'append'       => '',
+											'maxlength'    => '',
+										],
+										[
+											'key'          => $this->field_key . '_flex_standard_text',
+											'label'        => __( 'Custom card text', 'savage-cards' ),
+											'name'         => 'text',
+											'type'         => 'textarea',
+											'instructions' => '',
+											'maxlength'    => '',
+											'rows'         => 2,
+											'new_lines'    => '',
+										],
+									],
+									'min'        => '',
+									'max'        => '',
+								],
+							],
+							'button_label' => __( 'Select a card type', 'savage-cards' ),
+							'min'          => 1,
+							'max'          => 1,
 						],
 					],
-				],
-			]);
+					'location' => [
+						[
+							[
+								'param'    => 'post_type',
+								'operator' => '==',
+								'value'    => $this->post_type,
+							],
+						],
+					],
+				]
+			);
 		}
 
 		/**
