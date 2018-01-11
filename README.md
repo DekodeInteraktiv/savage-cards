@@ -1,4 +1,5 @@
 # Savage
+[![Build Status](https://travis-ci.org/DekodeInteraktiv/savage-cards.svg?branch=master)](https://travis-ci.org/DekodeInteraktiv/savage-cards)
 Hogan + Savage = The Mega Powers!
 
 A plugin for setting up a card view for different content. Intended for use with [Hogan Grid](https://github.com/DekodeInteraktiv/hogan-grid).
