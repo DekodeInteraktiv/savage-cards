@@ -26,14 +26,14 @@ class Core {
 	 *
 	 * @var array $_default_card_post_types
 	 */
-	private $_default_card_post_types;
+	private $_default_card_post_types = [];
 
 	/**
 	 * Default card layout.
 	 *
 	 * @var string $_default_card
 	 */
-	private $_default_card;
+	private $_default_card = '';
 
 	/**
 	 * Hold the class instance.
@@ -48,8 +48,7 @@ class Core {
 	 * @return void
 	 */
 	private function __construct() {
-		$this->_default_card_post_types = (array) apply_filters( 'savage/default_card_post_types', [ 'post', 'page' ] );
-		$this->_default_card            = (string) apply_filters( 'savage/default_card', 'defaultcard' );
+		add_action( 'init', [ $this, 'init' ] );
 
 		// Register card field group.
 		add_action( 'acf/include_fields', [ $this, 'register_card_meta_field_group' ] );
@@ -72,6 +71,16 @@ class Core {
 		}
 
 		return self::$_instance;
+	}
+
+	/**
+	 * Init
+	 *
+	 * @return void
+	 */
+	public function init() {
+		$this->_default_card            = (string) apply_filters( 'savage/default_card', 'defaultcard' );
+		$this->_default_card_post_types = (array) apply_filters( 'savage/default_card_post_types', [ 'post', 'page' ] );
 	}
 
 	/**
