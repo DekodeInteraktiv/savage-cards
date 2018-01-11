@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Savage Cards\n"
-"POT-Creation-Date: 2018-01-10 15:02+0100\n"
-"PO-Revision-Date: 2018-01-10 15:02+0100\n"
+"POT-Creation-Date: 2018-01-11 12:41+0100\n"
+"PO-Revision-Date: 2018-01-11 12:51+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -23,15 +23,15 @@ msgstr ""
 
 #: includes/class-core.php:103
 msgid "Image on card"
-msgstr ""
+msgstr "Bilde"
 
 #: includes/class-core.php:108
 msgid "Use featured image"
-msgstr ""
+msgstr "Bruk framhevet bilde"
 
 #: includes/class-core.php:109
 msgid "Use alternative image"
-msgstr ""
+msgstr "Bruk alternativt bilde"
 
 #: includes/class-core.php:110
 msgid "No image"
@@ -39,15 +39,15 @@ msgstr "Uten bilde"
 
 #: includes/class-core.php:120
 msgid "Alternative image:"
-msgstr ""
+msgstr "Alternativt bilde:"
 
 #: includes/class-core.php:146
 msgid "Override title"
-msgstr ""
+msgstr "Overstyr tittel"
 
 #: includes/class-core.php:149
 msgid "Leave empty to use post title"
-msgstr ""
+msgstr "Overstyrer kun på kortet"
 
 #: includes/class-core.php:155
 msgid "Tagline"
@@ -55,35 +55,35 @@ msgstr ""
 
 #: includes/class-core.php:160
 msgid "No tagline"
-msgstr ""
+msgstr "Ingen"
 
 #: includes/class-core.php:161
 msgid "Auto"
-msgstr ""
+msgstr "Auto"
 
 #: includes/class-core.php:162
 msgid "Manual"
-msgstr ""
+msgstr "Skriv inn tagline"
 
 #: includes/class-core.php:189
 msgid "Excerpt"
-msgstr ""
+msgstr "Utdragstekst"
 
 #: includes/class-core.php:192
 msgid "Max xx chars."
-msgstr ""
+msgstr "Maks xx tegn."
 
 #: includes/class-core.php:200
 msgid "Link text"
-msgstr ""
+msgstr "Vis lenketekst"
 
 #: includes/class-core.php:203
 msgid "\"Read more\"-text"
-msgstr ""
+msgstr "Valgfri beskrivende tekst"
 
 #: includes/class-core.php:246 includes/class-customcard.php:91
 msgid "Card content"
-msgstr ""
+msgstr "Kort"
 
 #: includes/class-customcard.php:51
 msgctxt "post type general name"
