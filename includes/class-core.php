@@ -36,6 +36,13 @@ class Core {
 	private $_default_card = '';
 
 	/**
+	 * Default card components
+	 *
+	 * @var array $_components
+	 */
+	private $_components = [];
+
+	/**
 	 * Hold the class instance.
 	 *
 	 * @var Core $_instance
@@ -79,8 +86,27 @@ class Core {
 	 * @return void
 	 */
 	public function init() {
+		// Allow people overwriting as late as posible to funcitons can be
+		// overwritten in the theme.
+		require_once 'component-functions.php';
+
 		$this->_default_card            = (string) apply_filters( 'savage/default_card', 'defaultcard' );
 		$this->_default_card_post_types = (array) apply_filters( 'savage/default_card_post_types', [ 'post', 'page' ] );
+
+		$this->_components = (array) apply_filters( 'savage/default_components', [
+			'image'   => [
+				'filter'   => 'header',
+				'callback' => 'savage_image',
+				'priority' => 10,
+			],
+			'heading' => [
+				'filter'   => 'body',
+				'callback' => 'savage_heading',
+				'priority' => 10,
+			],
+		] );
+
+		$this->register_card_components();
 	}
 
 	/**
@@ -280,6 +306,38 @@ class Core {
 		}
 
 		do_action( 'savage/cards_registered' );
+	}
+
+	/**
+	 * Get component
+	 *
+	 * @param string       $key Component key.
+	 * @param array|string $component Component or component key.
+	 */
+	private function get_component( $key, $component ) {
+		if ( is_array( $component ) && isset( $this->_components[ $key ] ) ) {
+			return wp_parse_args( $component, $this->_components[ $key ] );
+		} elseif ( isset( $this->_components[ $component ] ) ) {
+			return $this->_components[ $component ];
+		}
+
+		return false;
+	}
+
+	/**
+	 * Register card components
+	 */
+	public function register_card_components() {
+		foreach ( $this->_cards as $name => $card ) {
+			if ( isset( $card->components ) ) {
+				foreach ( $card->components as $key => $component ) {
+					$valid_component = $this->get_component( $key, $component );
+					if ( $valid_component && function_exists( $valid_component['callback'] ) ) {
+						add_action( 'savage/template/' . $valid_component['filter'] . '/' . $name, $valid_component['callback'], $valid_component['priority'] );
+					}
+				}
+			}
+		}
 	}
 
 	/**
