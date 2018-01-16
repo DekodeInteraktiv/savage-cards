@@ -31,6 +31,8 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		 * Card constructor.
 		 */
 		public function __construct() {
+			$this->components = [ 'image', 'heading' ];
+
 			$this->post_type = 'savage_custom_card';
 			$this->register_card_post_type();
 			add_filter( 'acf/fields/wysiwyg/toolbars', [ $this, 'append_card_toolbar' ] );
