@@ -90,10 +90,10 @@ class Core {
 		// overwritten in the theme.
 		require_once 'component-functions.php';
 
-		$this->_default_card            = (string) apply_filters( 'savage/default_card', 'defaultcard' );
-		$this->_default_card_post_types = (array) apply_filters( 'savage/default_card_post_types', [ 'post', 'page' ] );
+		$this->_default_card            = (string) apply_filters( 'savage/card/default_card', 'defaultcard' );
+		$this->_default_card_post_types = (array) apply_filters( 'savage/card/default_card_post_types', [ 'post', 'page' ] );
 
-		$this->_components = (array) apply_filters( 'savage/default_components', [
+		$this->_components = (array) apply_filters( 'savage/card/default_components', [
 			'image'   => [
 				'filter'   => 'header',
 				'callback' => 'savage_image',
@@ -333,7 +333,7 @@ class Core {
 				foreach ( $card->components as $key => $component ) {
 					$valid_component = $this->get_component( $key, $component );
 					if ( $valid_component && function_exists( $valid_component['callback'] ) ) {
-						add_action( 'savage/template/' . $valid_component['filter'] . '/' . $name, $valid_component['callback'], $valid_component['priority'] );
+						add_action( 'savage/card/template/' . $valid_component['filter'] . '/' . $name, $valid_component['callback'], $valid_component['priority'] );
 					}
 				}
 			}

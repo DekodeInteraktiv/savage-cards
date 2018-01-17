@@ -34,12 +34,19 @@ Meta fields filters:
 - `savage/card/field_group/fields_before` - add new fields to group before existing fields.
 - `savage/card/field_group/fields_after` - add new fields to group after existing fields.
 
-- `savage/default_card_post_types` - post types that should have the default card
-- `savage/default_card` - default card type
+- `savage/card/default_card_post_types` - post types that should have the default card
+- `savage/card/default_card` - default card type
+- `savage/card/default_components` - default components used in the templates
 
 Custom card filters
 - `savage/card/custom/bg_color_options` - filter for adding themes's color palette to card bg_color options.
 - `savage/card/custom/image_options` - filter for changing image options on custom card.
+
+## Available actions
+- `savage/card/template/init` - Runs before template markup
+- `savage/card/template/header/{ template name }` - top section section of template
+- `savage/card/template/body/{ template name }` - middle section of template
+- `savage/card/template/footer/{ template name }` - bottom section of template
 
 ## Adding custom card layouts
 
