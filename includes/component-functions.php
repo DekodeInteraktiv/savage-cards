@@ -23,6 +23,10 @@ if ( ! function_exists( 'savage_heading' ) ) {
 	 * @param array $args Component args.
 	 */
 	function savage_heading( $args ) {
-		printf( '<h2>%s</h2>', get_the_title( $args['id'] ) );
+		$title = get_post_meta( $args['id'], 'savage_title', true ) ?: get_the_title( $args['id'] );
+
+		if ( ! empty( $title ) ) {
+			printf( '<h2 class="savage-title">%s</h2>', esc_html( $title ) );
+		}
 	}
 }
