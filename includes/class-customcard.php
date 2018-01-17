@@ -31,7 +31,11 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		 * Card constructor.
 		 */
 		public function __construct() {
-			$this->components = [ 'image', 'heading' ];
+			$this->components = [
+				'image',
+				'heading',
+				'excerpt',
+			];
 
 			$this->post_type = 'savage_custom_card';
 			$this->register_card_post_type();

@@ -104,6 +104,11 @@ class Core {
 				'callback' => 'savage_heading',
 				'priority' => 10,
 			],
+			'excerpt' => [
+				'filter'   => 'body',
+				'callback' => 'savage_excerpt',
+				'priority' => 20,
+			],
 		] );
 
 		$this->register_card_components();

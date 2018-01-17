@@ -24,7 +24,11 @@ if ( ! class_exists( '\\Dekode\\Savage\\DefaultCard' ) && class_exists( '\\Dekod
 		 * Card constructor.
 		 */
 		public function __construct() {
-			$this->components = [ 'image', 'heading' ];
+			$this->components = [
+				'image',
+				'heading',
+				'excerpt',
+			];
 
 			parent::__construct( 'defaultcard' );
 		}
