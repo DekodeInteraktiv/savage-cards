@@ -33,7 +33,6 @@ Meta fields filters:
 - `savage/card/meta/locations` - for adding locations to the ACF field group.
 - `savage/card/field_group/fields_before` - add new fields to group before existing fields.
 - `savage/card/field_group/fields_after` - add new fields to group after existing fields.
-
 - `savage/card/default_card_post_types` - post types that should have the default card
 - `savage/card/default_card` - default card type
 - `savage/card/default_components` - default components used in the templates
