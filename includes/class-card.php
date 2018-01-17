@@ -47,13 +47,21 @@ abstract class Card {
 	 * @param array $args Card option.
 	 */
 	public function get_markup( array $args = [] ) {
+		do_action( 'savage/card/template/init', $this->name );
+
 		ob_start();
 
-		do_action( 'savage/template/before/' . $this->name );
+		/*
+		 * @hooked savage_image - 10
+		 */
+		do_action( 'savage/card/template/header/' . $this->name, $args );
 
-		printf( '<h2>%s</h2>', get_the_title( $args['id'] ) );
+		/*
+		 * @hooked savage_heading - 10
+		 */
+		do_action( 'savage/card/template/body/' . $this->name, $args );
 
-		do_action( 'savage/template/after/' . $this->name );
+		do_action( 'savage/card/template/footer/' . $this->name, $args );
 
 		$card = ob_get_clean();
 		return $card;
