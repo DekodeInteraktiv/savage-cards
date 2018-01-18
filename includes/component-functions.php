@@ -30,3 +30,18 @@ if ( ! function_exists( 'savage_heading' ) ) {
 		}
 	}
 }
+
+if ( ! function_exists( 'savage_excerpt' ) ) {
+	/**
+	 * Excerpt
+	 *
+	 * @param array $args Component args.
+	 */
+	function savage_excerpt( $args ) {
+		$excerpt = get_post_meta( $args['id'], 'savage_excerpt', true );
+
+		if ( ! empty( $excerpt ) ) {
+			printf( '<p class="savage-excerpt">%s</p>', esc_html( $excerpt ) );
+		}
+	}
+}
