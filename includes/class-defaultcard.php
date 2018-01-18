@@ -28,6 +28,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\DefaultCard' ) && class_exists( '\\Dekod
 				'image',
 				'heading',
 				'excerpt',
+				'link',
 			];
 
 			parent::__construct( 'defaultcard' );

@@ -42,6 +42,8 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 			add_filter( 'acf/fields/wysiwyg/toolbars', [ $this, 'append_card_toolbar' ] );
 			add_action( 'acf/include_fields', [ $this, 'register_field_group' ] );
 
+			add_action( 'savage/card/template/footer/' . $this->post_type, [ $this, 'template_link' ], 10 );
+
 			parent::__construct( $this->post_type );
 		}
 
@@ -223,6 +225,19 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 				],
 			];
 			return $toolbars;
+		}
+
+		/**
+		 * Custom card template link
+		 *
+		 * @param array $args Component args.
+		 */
+		public function template_link( $args ) {
+			$link = get_post_meta( $args['id'], 'card_link', true );
+
+			if ( ! empty( $link ) ) {
+				savage_card_component( 'link', $link );
+			}
 		}
 
 	}

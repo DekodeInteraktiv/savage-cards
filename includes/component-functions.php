@@ -70,3 +70,23 @@ if ( ! function_exists( 'savage_card_excerpt' ) ) {
 		}
 	}
 }
+
+if ( ! function_exists( 'savage_card_link' ) ) {
+	/**
+	 * Link
+	 *
+	 * @param array $args Component args.
+	 */
+	function savage_card_link( $args ) {
+		$link_text = (string) apply_filters( 'savage/card/components/savage_link/text',
+			/* translators: A11y card link text */
+			__( 'Read article &quot;%s&quot;', 'savage-card' ),
+			$args
+		);
+
+		savage_card_component( 'link', [
+			'url'   => get_the_permalink( $args['id'] ),
+			'title' => sprintf( $link_text, get_the_title( $args['id'] ) ),
+		] );
+	}
+}
