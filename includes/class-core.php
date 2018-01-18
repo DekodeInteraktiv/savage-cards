@@ -106,7 +106,7 @@ class Core {
 			],
 			'excerpt' => [
 				'filter'   => 'body',
-				'callback' => 'savage_excerpt',
+				'callback' => 'savage_card_excerpt',
 				'priority' => 20,
 			],
 		] );

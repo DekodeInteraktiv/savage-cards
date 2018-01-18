@@ -54,17 +54,19 @@ if ( ! function_exists( 'savage_card_heading' ) ) {
 	}
 }
 
-if ( ! function_exists( 'savage_excerpt' ) ) {
+if ( ! function_exists( 'savage_card_excerpt' ) ) {
 	/**
 	 * Excerpt
 	 *
 	 * @param array $args Component args.
 	 */
-	function savage_excerpt( $args ) {
+	function savage_card_excerpt( $args ) {
 		$excerpt = get_post_meta( $args['id'], 'savage_excerpt', true );
 
 		if ( ! empty( $excerpt ) ) {
-			printf( '<p class="savage-excerpt">%s</p>', esc_html( $excerpt ) );
+			savage_card_component( 'excerpt', [
+				'content' => $excerpt,
+			] );
 		}
 	}
 }
