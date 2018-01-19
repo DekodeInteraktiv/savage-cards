@@ -20,6 +20,13 @@ if ( empty( $args['url'] ) ) {
 	return;
 }
 
-printf( '<div class="savage-image-cover"><span style="background-image: url(%s);"></span></div>',
-	esc_url( $args['url'] )
-);
+?>
+<div class="savage-card-image">
+	<div class="savage-card-image-inner">
+		<?php
+		printf( '<span class="savage-card-image-image" style="background-image: url(%s);"></span>',
+			esc_url( $args['url'] )
+		);
+		?>
+	</div>
+</div>
