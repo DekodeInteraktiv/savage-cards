@@ -20,6 +20,9 @@ if ( empty( $args['title'] ) ) {
 	return;
 }
 
+// Add card classname.
+savage_card_add_classname( 'savage-has-heading' );
+
 printf( '<h2 class="savage-card-heading">%s</h2>',
 	wp_kses( $args['title'], [
 		'br' => [],

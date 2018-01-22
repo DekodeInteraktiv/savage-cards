@@ -30,6 +30,7 @@ define( 'SAVAGE_CARDS_URL', plugin_dir_url( __FILE__ ) );
 
 require_once 'includes/class-card.php';
 require_once 'includes/class-core.php';
+require_once 'includes/class-classnames.php';
 require_once 'includes/helper-functions.php';
 
 /**
