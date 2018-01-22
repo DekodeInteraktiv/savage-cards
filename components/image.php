@@ -20,6 +20,9 @@ if ( empty( $args['url'] ) ) {
 	return;
 }
 
+// Add card classname.
+savage_card_add_classname( 'savage-has-image' );
+
 ?>
 <div class="savage-card-image">
 	<div class="savage-card-image-inner">

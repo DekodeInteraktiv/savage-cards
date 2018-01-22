@@ -35,7 +35,7 @@ function savage_register_card( \Dekode\Savage\Card $card ) {
  *
  * @param array $args Card options.
  */
-function savage_card( array $args = [] ) {
+function savage_card_get_markup( array $args = [] ) {
 	$args = wp_parse_args( $args, [
 		'id'   => 0,
 		'size' => 'small',
@@ -49,11 +49,42 @@ function savage_card( array $args = [] ) {
 	$card = \Dekode\Savage\Core::get_instance()->get_card( $args['type'] );
 
 	if ( $card instanceof Dekode\Savage\Card ) {
-		echo $card->get_markup( $args ); // WPCS: XSS OK.
+		return $card->get_markup( $args );
 	} elseif ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
 		// Translators: %s: card type.
-		printf( esc_html__( 'Missing savage card type - %s', 'savage-cards' ), esc_html( $args['type'] ) );
+		return printf( esc_html__( 'Missing savage card type - %s', 'savage-cards' ), esc_html( $args['type'] ) );
 	}
+}
+
+/**
+ * Get card
+ *
+ * @param array $args Card options.
+ * @return array Card markup and classnames.
+ */
+function savage_get_card( array $args = [] ) : array {
+	return [
+		'markup'     => savage_card_get_markup( $args ),
+		'classnames' => savage_card_get_classnames(),
+	];
+}
+
+/**
+ * Add card classname
+ *
+ * @param string $classname Classname.
+ */
+function savage_card_add_classname( string $classname ) {
+	\Dekode\Savage\Classnames::get_instance()->add_classname( $classname );
+}
+
+/**
+ * Get card classnames
+ *
+ * @return array Array of classnames.
+ */
+function savage_card_get_classnames() : array {
+	return \Dekode\Savage\Classnames::get_instance()->get_classnames();
 }
 
 /**
