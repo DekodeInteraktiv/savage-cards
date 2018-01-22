@@ -36,6 +36,7 @@ Meta fields filters:
 - `savage/card/default_card_post_types` - post types that should have the default card
 - `savage/card/default_card` - default card type
 - `savage/card/default_components` - default components used in the templates
+- `savage/card/components/savage_link/text` - link text
 
 Custom card filters
 - `savage/card/custom/bg_color_options` - filter for adding themes's color palette to card bg_color options.

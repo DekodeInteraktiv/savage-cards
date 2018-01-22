@@ -55,3 +55,29 @@ function savage_card( array $args = [] ) {
 		printf( esc_html__( 'Missing savage card type - %s', 'savage-cards' ), esc_html( $args['type'] ) );
 	}
 }
+
+/**
+ * Component
+ *
+ * @param string $name Name of component.
+ * @param array  $args Arguments to pass to the component.
+ * @return void
+ */
+function savage_card_component( string $name, array $args = [] ) {
+	$templates = [
+		'components/' . $name . '/' . $name . '.php',
+		'components/' . $name . '.php',
+	];
+
+	$component = '';
+	foreach ( $templates as $template ) {
+		if ( file_exists( SAVAGE_CARDS_PATH . '/' . $template ) ) {
+			$component = SAVAGE_CARDS_PATH . '/' . $template;
+			break;
+		}
+	}
+
+	if ( $component && 0 === validate_file( $component ) ) {
+		include $component;
+	}
+}

@@ -52,16 +52,29 @@ abstract class Card {
 		ob_start();
 
 		/*
-		 * @hooked savage_image - 10
+		 * @hooked savage_card_image - 10
 		 */
 		do_action( 'savage/card/template/header/' . $this->name, $args );
 
-		/*
-		 * @hooked savage_heading - 10
-		 * @hooked savage_excerpt - 20
-		 */
-		do_action( 'savage/card/template/body/' . $this->name, $args );
+		?>
+		<div class="savage-card-body">
+			<div class="savage-card-body-inner">
+				<?php
 
+				/*
+				 * @hooked savage_card_heading - 10
+				 * @hooked savage_card_excerpt - 20
+				 */
+				do_action( 'savage/card/template/body/' . $this->name, $args );
+
+				?>
+			</div>
+		</div>
+		<?php
+
+		/*
+		 * @hooked savage_card_link - 10
+		 */
 		do_action( 'savage/card/template/footer/' . $this->name, $args );
 
 		$card = ob_get_clean();

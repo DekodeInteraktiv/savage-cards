@@ -1,0 +1,27 @@
+<?php
+/**
+ * Savage Component: Excerpt
+ *
+ * @package Savage
+ */
+
+if ( ! isset( $args ) || ! is_array( $args ) ) {
+	return;
+}
+
+$defaults = [
+	'content' => '',
+];
+
+$args = wp_parse_args( $args, $defaults );
+
+// Return early if content isn't defined.
+if ( empty( $args['content'] ) ) {
+	return;
+}
+
+printf( '<p class="savage-card-excerpt">%s</p>',
+	wp_kses( $args['content'], [
+		'br' => [],
+	] )
+);
