@@ -52,7 +52,7 @@ function savage_card_get_markup( array $args = [] ) {
 		return $card->get_markup( $args );
 	} elseif ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
 		// Translators: %s: card type.
-		return printf( esc_html__( 'Missing savage card type - %s', 'savage-cards' ), esc_html( $args['type'] ) );
+		return sprintf( esc_html__( 'Missing savage card type - %s', 'savage-cards' ), esc_html( $args['type'] ) );
 	}
 }
 
