@@ -3,7 +3,7 @@
   "description": "Card setup for Dekode design framework",
   "homepage": "https://github.com/DekodeInteraktiv/savage-cards",
   "type": "wordpress-plugin",
-  "license": "GPL-3.0",
+  "license": "GPL-3.0-or-later",
   "require": {
     "php": ">=5.5",
     "composer/installers": "~1.2"
