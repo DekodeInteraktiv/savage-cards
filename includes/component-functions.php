@@ -44,7 +44,7 @@ if ( ! function_exists( 'savage_card_label' ) ) {
 	 * @param array $args Component args.
 	 */
 	function savage_card_label( $args ) {
-		$label_type = get_post_meta( $args['id'], 'savage_label', true );
+		$label_type = get_post_meta( $args['id'], 'savage_label', true ) ?? '';
 
 		switch ( $label_type ) {
 			case 'manual':
