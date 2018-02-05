@@ -25,5 +25,5 @@ savage_card_add_classname( 'savage-has-label' );
 
 printf(
 	'<p class="savage-card-label">%s</p>',
-	wp_kses( $args['label'], [] )
+	esc_html( $args['label'] )
 );
