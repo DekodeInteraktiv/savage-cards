@@ -95,22 +95,22 @@ class Core {
 
 		$this->_components = (array) apply_filters(
 			'savage/card/default_components', [
-				'image'   => [
+				'image'      => [
 					'filter'   => 'header',
 					'callback' => 'savage_card_image',
 					'priority' => 10,
 				],
-				'label'   => [
+				'label'      => [
 					'filter'   => 'body',
 					'callback' => 'savage_card_label',
 					'priority' => 10,
 				],
-				'heading' => [
+				'heading'    => [
 					'filter'   => 'body',
 					'callback' => 'savage_card_heading',
 					'priority' => 20,
 				],
-				'excerpt' => [
+				'excerpt'    => [
 					'filter'   => 'body',
 					'callback' => 'savage_card_excerpt',
 					'priority' => 30,
@@ -120,7 +120,7 @@ class Core {
 					'callback' => 'savage_card_extensions',
 					'priority' => 35,
 				],
-				'link'    => [
+				'link'       => [
 					'filter'   => 'footer',
 					'callback' => 'savage_card_link',
 					'priority' => 10,
