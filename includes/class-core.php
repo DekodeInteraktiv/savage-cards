@@ -115,6 +115,11 @@ class Core {
 					'callback' => 'savage_card_excerpt',
 					'priority' => 30,
 				],
+				'extensions' => [
+					'filter'   => 'body',
+					'callback' => 'savage_card_extensions',
+					'priority' => 35,
+				],
 				'link'    => [
 					'filter'   => 'footer',
 					'callback' => 'savage_card_link',
