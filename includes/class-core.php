@@ -108,12 +108,12 @@ class Core {
 				'heading' => [
 					'filter'   => 'body',
 					'callback' => 'savage_card_heading',
-					'priority' => 10,
+					'priority' => 20,
 				],
 				'excerpt' => [
 					'filter'   => 'body',
 					'callback' => 'savage_card_excerpt',
-					'priority' => 20,
+					'priority' => 30,
 				],
 				'link'    => [
 					'filter'   => 'footer',
