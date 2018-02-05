@@ -21,15 +21,7 @@ Meta fields filters:
 	'none' => __( 'No image', 'savage-cards' ),
 ]
 ```
-- `savage/card/meta/tagline_types` - customize dropdown for card tagline types
-```
-//default values
-[
-	'none' => __( 'No tagline', 'savage-cards' ),
-	'auto' => __( 'Auto', 'savage-cards' ),
-	'manual' => __( 'Manual', 'savage-cards' ),
-]
-```
+
 - `savage/card/meta/locations` - for adding locations to the ACF field group.
 - `savage/card/field_group/fields_before` - add new fields to group before existing fields.
 - `savage/card/field_group/fields_after` - add new fields to group after existing fields.
@@ -37,6 +29,7 @@ Meta fields filters:
 - `savage/card/default_card` - default card type
 - `savage/card/default_components` - default components used in the templates
 - `savage/card/components/savage_link/text` - link text
+- `savage/card/components/label/auto` - set rules for auto-label on cards
 
 Custom card filters
 - `savage/card/custom/bg_color_options` - filter for adding themes's color palette to card bg_color options.
