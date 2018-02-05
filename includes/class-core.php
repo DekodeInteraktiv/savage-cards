@@ -93,33 +93,35 @@ class Core {
 		$this->_default_card            = (string) apply_filters( 'savage/card/default_card', 'defaultcard' );
 		$this->_default_card_post_types = (array) apply_filters( 'savage/card/default_card_post_types', [ 'post', 'page' ] );
 
-		$this->_components = (array) apply_filters( 'savage/card/default_components', [
-			'image'   => [
-				'filter'   => 'header',
-				'callback' => 'savage_card_image',
-				'priority' => 10,
-			],
-			'label' => [
-				'filter'   => 'body',
-				'callback' => 'savage_card_label',
-				'priority' => 10,
-			],
-			'heading' => [
-				'filter'   => 'body',
-				'callback' => 'savage_card_heading',
-				'priority' => 10,
-			],
-			'excerpt' => [
-				'filter'   => 'body',
-				'callback' => 'savage_card_excerpt',
-				'priority' => 20,
-			],
-			'link'    => [
-				'filter'   => 'footer',
-				'callback' => 'savage_card_link',
-				'priority' => 10,
-			],
-		] );
+		$this->_components = (array) apply_filters(
+			'savage/card/default_components', [
+				'image'   => [
+					'filter'   => 'header',
+					'callback' => 'savage_card_image',
+					'priority' => 10,
+				],
+				'label'   => [
+					'filter'   => 'body',
+					'callback' => 'savage_card_label',
+					'priority' => 10,
+				],
+				'heading' => [
+					'filter'   => 'body',
+					'callback' => 'savage_card_heading',
+					'priority' => 10,
+				],
+				'excerpt' => [
+					'filter'   => 'body',
+					'callback' => 'savage_card_excerpt',
+					'priority' => 20,
+				],
+				'link'    => [
+					'filter'   => 'footer',
+					'callback' => 'savage_card_link',
+					'priority' => 10,
+				],
+			]
+		);
 
 		$this->register_card_components();
 	}
@@ -154,11 +156,13 @@ class Core {
 				'name'          => 'savage_image_type',
 				'type'          => 'select',
 				'required'      => 0,
-				'choices'       => apply_filters( 'savage/card/meta/image_types', [
-					'featured'    => __( 'Use featured image', 'savage-cards' ),
-					'alternative' => __( 'Use alternative image', 'savage-cards' ),
-					'none'        => __( 'No image', 'savage-cards' ),
-				] ),
+				'choices'       => apply_filters(
+					'savage/card/meta/image_types', [
+						'featured'    => __( 'Use featured image', 'savage-cards' ),
+						'alternative' => __( 'Use alternative image', 'savage-cards' ),
+						'none'        => __( 'No image', 'savage-cards' ),
+					]
+				),
 				'allow_null'    => 0,
 				'multiple'      => 0,
 				'ui'            => 0,
@@ -211,7 +215,7 @@ class Core {
 			[
 				'key'               => 'savage_card_field_label_text',
 				'label'             => '',
-				'instructions' => __( 'Add label text here', 'savage-cards' ),
+				'instructions'      => __( 'Add label text here', 'savage-cards' ),
 				'name'              => 'savage_label_text',
 				'type'              => 'text',
 				'required'          => 0,
