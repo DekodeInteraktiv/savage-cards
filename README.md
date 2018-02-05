@@ -30,6 +30,7 @@ Meta fields filters:
 - `savage/card/default_components` - default components used in the templates
 - `savage/card/components/savage_link/text` - link text
 - `savage/card/components/label/auto` - set rules for auto-label on cards
+- `savage/card/components/extensions` - add custom elements to default card after excerpt (text, date, btn etc.)
 
 Custom card filters
 - `savage/card/custom/bg_color_options` - filter for adding themes's color palette to card bg_color options.

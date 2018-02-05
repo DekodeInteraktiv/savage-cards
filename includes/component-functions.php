@@ -105,6 +105,25 @@ if ( ! function_exists( 'savage_card_excerpt' ) ) {
 	}
 }
 
+if ( ! function_exists( 'savage_card_extensions' ) ) {
+	/**
+	 * Additional fields for default card.
+	 *
+	 * @param array $args Component args.
+	 */
+	function savage_card_extensions( $args ) {
+
+		$additional_fields = apply_filters( 'savage/card/components/extensions', [], $args );
+
+		if ( ! empty( $additional_fields ) ) {
+
+			foreach ( $additional_fields as $extension ) {
+				savage_card_component( 'extensions', [ $extension ] );
+			}
+		}
+	}
+}
+
 if ( ! function_exists( 'savage_card_link' ) ) {
 	/**
 	 * Link
