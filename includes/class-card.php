@@ -62,6 +62,7 @@ abstract class Card {
 				<?php
 
 				/*
+				 * @hooked savage_card_label - 10
 				 * @hooked savage_card_heading - 10
 				 * @hooked savage_card_excerpt - 20
 				 */
