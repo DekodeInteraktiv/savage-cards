@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Savage Cards\n"
-"POT-Creation-Date: 2018-01-11 12:41+0100\n"
-"PO-Revision-Date: 2018-01-11 12:51+0100\n"
+"POT-Creation-Date: 2018-02-05 09:34+0100\n"
+"PO-Revision-Date: 2018-02-05 09:35+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -21,161 +21,171 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/class-core.php:103
+#: includes/class-core.php:153
 msgid "Image on card"
 msgstr "Bilde"
 
-#: includes/class-core.php:108
+#: includes/class-core.php:158
 msgid "Use featured image"
 msgstr "Bruk framhevet bilde"
 
-#: includes/class-core.php:109
+#: includes/class-core.php:159
 msgid "Use alternative image"
 msgstr "Bruk alternativt bilde"
 
-#: includes/class-core.php:110
+#: includes/class-core.php:160
 msgid "No image"
 msgstr "Uten bilde"
 
-#: includes/class-core.php:120
+#: includes/class-core.php:170
 msgid "Alternative image:"
 msgstr "Alternativt bilde:"
 
-#: includes/class-core.php:146
-msgid "Override title"
-msgstr "Overstyr tittel"
-
-#: includes/class-core.php:149
-msgid "Leave empty to use post title"
-msgstr "Overstyrer kun på kortet"
-
-#: includes/class-core.php:155
-msgid "Tagline"
+#: includes/class-core.php:196
+msgid "Label"
 msgstr ""
 
-#: includes/class-core.php:160
-msgid "No tagline"
-msgstr "Ingen"
-
-#: includes/class-core.php:161
+#: includes/class-core.php:201
 msgid "Auto"
 msgstr "Auto"
 
-#: includes/class-core.php:162
+#: includes/class-core.php:202
 msgid "Manual"
-msgstr "Skriv inn tagline"
+msgstr "Custom label"
 
-#: includes/class-core.php:189
+#: includes/class-core.php:203
+msgid "No label"
+msgstr ""
+
+#: includes/class-core.php:214
+msgid "Add label text here"
+msgstr ""
+
+#: includes/class-core.php:231
+msgid "Override title"
+msgstr "Overstyr tittel"
+
+#: includes/class-core.php:234
+msgid "Leave empty to use post title"
+msgstr "Overstyrer kun på kortet"
+
+#: includes/class-core.php:240
 msgid "Excerpt"
 msgstr "Utdragstekst"
 
-#: includes/class-core.php:192
+#: includes/class-core.php:243
 msgid "Max xx chars."
 msgstr "Maks xx tegn."
 
-#: includes/class-core.php:200
+#: includes/class-core.php:251
 msgid "Link text"
 msgstr "Vis lenketekst"
 
-#: includes/class-core.php:203
+#: includes/class-core.php:254
 msgid "\"Read more\"-text"
 msgstr "Valgfri beskrivende tekst"
 
-#: includes/class-core.php:246 includes/class-customcard.php:91
+#: includes/class-core.php:297 includes/class-customcard.php:101
 msgid "Card content"
 msgstr "Kort"
 
-#: includes/class-customcard.php:51
+#: includes/class-customcard.php:61
 msgctxt "post type general name"
 msgid "Custom cards"
 msgstr "Kort"
 
-#: includes/class-customcard.php:52
+#: includes/class-customcard.php:62
 msgctxt "post type singular name"
 msgid "Custom cards"
 msgstr "Kort"
 
-#: includes/class-customcard.php:53
+#: includes/class-customcard.php:63
 msgctxt "admin menu"
 msgid "Custom cards"
 msgstr "Kort"
 
-#: includes/class-customcard.php:54
+#: includes/class-customcard.php:64
 msgctxt "add new on admin bar"
 msgid "Custom cards"
 msgstr "Kort"
 
-#: includes/class-customcard.php:55
+#: includes/class-customcard.php:65
 msgid "Add new"
 msgstr "Lag nytt kort"
 
-#: includes/class-customcard.php:56 includes/class-customcard.php:57
+#: includes/class-customcard.php:66 includes/class-customcard.php:67
 msgid "Add"
 msgstr "Legg til"
 
-#: includes/class-customcard.php:58
+#: includes/class-customcard.php:68
 msgid "Edit"
 msgstr "Rediger"
 
-#: includes/class-customcard.php:59
+#: includes/class-customcard.php:69
 msgid "Show"
 msgstr "Vis"
 
-#: includes/class-customcard.php:60
+#: includes/class-customcard.php:70
 msgid "Custom cards"
 msgstr "Kort"
 
-#: includes/class-customcard.php:61
+#: includes/class-customcard.php:71
 msgid "Search"
 msgstr "Søk"
 
-#: includes/class-customcard.php:62
+#: includes/class-customcard.php:72
 msgid "Parent:"
 msgstr ""
 
-#: includes/class-customcard.php:63
+#: includes/class-customcard.php:73
 msgid "Nothing found."
 msgstr ""
 
-#: includes/class-customcard.php:64
+#: includes/class-customcard.php:74
 msgid "Nothing found in trashcan."
 msgstr ""
 
-#: includes/class-customcard.php:95
+#: includes/class-customcard.php:105
 msgid "Card link"
 msgstr "Kortet skal lenke til"
 
-#: includes/class-customcard.php:104
+#: includes/class-customcard.php:114
 msgid "Card background color"
 msgstr "Bakgrunnsfarge på kort"
 
-#: includes/class-customcard.php:111
+#: includes/class-customcard.php:121
 msgid "Default"
 msgstr ""
 
-#: includes/class-customcard.php:121
+#: includes/class-customcard.php:131
 msgid "Card fields"
 msgstr "Felter"
 
-#: includes/class-customcard.php:130
+#: includes/class-customcard.php:140
 msgid "Standard"
 msgstr "Standard"
 
-#: includes/class-customcard.php:135
+#: includes/class-customcard.php:145
 msgid "Custom card tagline"
-msgstr "Stikktittel"
+msgstr "Label"
 
-#: includes/class-customcard.php:150
+#: includes/class-customcard.php:160
 msgid "Custom card title"
 msgstr "Tittel"
 
-#: includes/class-customcard.php:166
+#: includes/class-customcard.php:176
 msgid "Custom card text"
 msgstr "Tekst"
 
-#: includes/class-customcard.php:179
+#: includes/class-customcard.php:189
 msgid "Select a card type"
 msgstr "Velg type kort"
+
+#. translators: A11y card link text
+#: includes/component-functions.php:116
+#, php-format
+msgid "Read article &quot;%s&quot;"
+msgstr ""
 
 #: includes/helper-functions.php:24
 msgid ""
@@ -207,6 +217,9 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "https://dekode.no"
 msgstr ""
+
+#~ msgid "No tagline"
+#~ msgstr "Ingen"
 
 #~ msgctxt "post type general name"
 #~ msgid "Manual cards"

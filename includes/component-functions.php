@@ -37,6 +37,40 @@ if ( ! function_exists( 'savage_card_image' ) ) {
 	}
 }
 
+if ( ! function_exists( 'savage_card_label' ) ) {
+	/**
+	 * Label
+	 *
+	 * @param array $args Component args.
+	 */
+	function savage_card_label( $args ) {
+		$label_type = get_post_meta( $args['id'], 'savage_label', true ) ?? '';
+
+		switch ( $label_type ) {
+			case 'manual':
+				$label = get_post_meta( $args['id'], 'savage_label_text', true ) ?? '';
+				break;
+
+			case 'auto':
+				$post_type_label = get_post_type_object( get_post_type( $args['id'] ) )->labels->singular_name;
+				$label           = apply_filters( 'savage/card/components/label/auto', $post_type_label, $args['id'] );
+				break;
+
+			default:
+				$label = '';
+				break;
+		}
+
+		if ( ! empty( $label ) ) {
+			savage_card_component(
+				'label', [
+					'label' => $label,
+				]
+			);
+		}
+	}
+}
+
 if ( ! function_exists( 'savage_card_heading' ) ) {
 	/**
 	 * Heading

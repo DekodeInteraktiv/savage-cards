@@ -93,28 +93,35 @@ class Core {
 		$this->_default_card            = (string) apply_filters( 'savage/card/default_card', 'defaultcard' );
 		$this->_default_card_post_types = (array) apply_filters( 'savage/card/default_card_post_types', [ 'post', 'page' ] );
 
-		$this->_components = (array) apply_filters( 'savage/card/default_components', [
-			'image'   => [
-				'filter'   => 'header',
-				'callback' => 'savage_card_image',
-				'priority' => 10,
-			],
-			'heading' => [
-				'filter'   => 'body',
-				'callback' => 'savage_card_heading',
-				'priority' => 10,
-			],
-			'excerpt' => [
-				'filter'   => 'body',
-				'callback' => 'savage_card_excerpt',
-				'priority' => 20,
-			],
-			'link'    => [
-				'filter'   => 'footer',
-				'callback' => 'savage_card_link',
-				'priority' => 10,
-			],
-		] );
+		$this->_components = (array) apply_filters(
+			'savage/card/default_components', [
+				'image'   => [
+					'filter'   => 'header',
+					'callback' => 'savage_card_image',
+					'priority' => 10,
+				],
+				'label'   => [
+					'filter'   => 'body',
+					'callback' => 'savage_card_label',
+					'priority' => 10,
+				],
+				'heading' => [
+					'filter'   => 'body',
+					'callback' => 'savage_card_heading',
+					'priority' => 20,
+				],
+				'excerpt' => [
+					'filter'   => 'body',
+					'callback' => 'savage_card_excerpt',
+					'priority' => 30,
+				],
+				'link'    => [
+					'filter'   => 'footer',
+					'callback' => 'savage_card_link',
+					'priority' => 10,
+				],
+			]
+		);
 
 		$this->register_card_components();
 	}
@@ -149,11 +156,13 @@ class Core {
 				'name'          => 'savage_image_type',
 				'type'          => 'select',
 				'required'      => 0,
-				'choices'       => apply_filters( 'savage/card/meta/image_types', [
-					'featured'    => __( 'Use featured image', 'savage-cards' ),
-					'alternative' => __( 'Use alternative image', 'savage-cards' ),
-					'none'        => __( 'No image', 'savage-cards' ),
-				] ),
+				'choices'       => apply_filters(
+					'savage/card/meta/image_types', [
+						'featured'    => __( 'Use featured image', 'savage-cards' ),
+						'alternative' => __( 'Use alternative image', 'savage-cards' ),
+						'none'        => __( 'No image', 'savage-cards' ),
+					]
+				),
 				'allow_null'    => 0,
 				'multiple'      => 0,
 				'ui'            => 0,
@@ -187,25 +196,16 @@ class Core {
 				'mime_types'        => '',
 			],
 			[
-				'key'          => 'savage_card_field_title',
-				'label'        => __( 'Override title', 'savage-cards' ),
-				'name'         => 'savage_title',
-				'type'         => 'text',
-				'instructions' => __( 'Leave empty to use post title', 'savage-cards' ),
-				'required'     => 0,
-				'maxlength'    => '',
-			],
-			[
-				'key'           => 'savage_card_field_tagline_type',
-				'label'         => __( 'Tagline', 'savage-cards' ),
-				'name'          => 'savage_tagline',
+				'key'           => 'savage_card_field_label_type',
+				'label'         => __( 'Label', 'savage-cards' ),
+				'name'          => 'savage_label',
 				'type'          => 'select',
 				'required'      => 0,
-				'choices'       => apply_filters( 'savage/card/meta/tagline_types', [
-					'none'   => __( 'No tagline', 'savage-cards' ),
+				'choices'       => [
 					'auto'   => __( 'Auto', 'savage-cards' ),
 					'manual' => __( 'Manual', 'savage-cards' ),
-				] ),
+					'none'   => __( 'No label', 'savage-cards' ),
+				],
 				'allow_null'    => 0,
 				'multiple'      => 0,
 				'ui'            => 0,
@@ -213,21 +213,31 @@ class Core {
 				'return_format' => 'value',
 			],
 			[
-				'key'               => 'savage_card_field_tagline_text',
+				'key'               => 'savage_card_field_label_text',
 				'label'             => '',
-				'name'              => 'savage_tagline_text',
+				'instructions'      => __( 'Add label text here', 'savage-cards' ),
+				'name'              => 'savage_label_text',
 				'type'              => 'text',
-				'required'          => 1,
+				'required'          => 0,
 				'conditional_logic' => [
 					[
 						[
-							'field'    => 'savage_card_field_tagline_type',
+							'field'    => 'savage_card_field_label_type',
 							'operator' => '==',
 							'value'    => 'manual',
 						],
 					],
 				],
 				'maxlength'         => '',
+			],
+			[
+				'key'          => 'savage_card_field_title',
+				'label'        => __( 'Override title', 'savage-cards' ),
+				'name'         => 'savage_title',
+				'type'         => 'text',
+				'instructions' => __( 'Leave empty to use post title', 'savage-cards' ),
+				'required'     => 0,
+				'maxlength'    => '',
 			],
 			[
 				'key'          => 'savage_card_field_excerpt',

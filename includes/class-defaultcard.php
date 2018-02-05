@@ -26,6 +26,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\DefaultCard' ) && class_exists( '\\Dekod
 		public function __construct() {
 			$this->components = [
 				'image',
+				'label',
 				'heading',
 				'excerpt',
 				'link',
