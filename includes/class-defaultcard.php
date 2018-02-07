@@ -29,6 +29,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\DefaultCard' ) && class_exists( '\\Dekod
 				'label',
 				'heading',
 				'excerpt',
+				'linkteaser',
 				'link',
 			];
 
