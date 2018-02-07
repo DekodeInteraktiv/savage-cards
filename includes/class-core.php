@@ -279,19 +279,6 @@ class Core {
 			],
 		];
 
-		$hide_on_screen = [
-			'the_content',
-			'custom_fields',
-			'discussion',
-			'comments',
-			'revisions',
-			'slug',
-			'author',
-			'format',
-			'tags',
-			'send-trackbacks',
-		];
-
 		// Include custom fields before and after default fields.
 		$field_group_fields = array_merge( $fields_before, $meta_fields, $fields_after );
 
@@ -302,7 +289,7 @@ class Core {
 				'fields'         => $field_group_fields,
 				'location'       => apply_filters( 'savage/card/meta/locations', $location ),
 				'position'       => 'side',
-				'hide_on_screen' => apply_filters( 'savage/card/field_group/hide_on_screen', $hide_on_screen ),
+				'hide_on_screen' => apply_filters( 'savage/card/field_group/hide_on_screen', [] ),
 			]
 		);
 	}
