@@ -28,7 +28,8 @@ Meta fields filters:
 - `savage/card/default_card_post_types` - post types that should have the default card
 - `savage/card/default_card` - default card type
 - `savage/card/default_components` - default components used in the templates
-- `savage/card/components/savage_link/text` - link text
+- `savage/card/components/savage_link/text` - link text for screenreaders
+- `savage/card/components/savage_link/teaser` - link text (or button) on card
 - `savage/card/components/label/auto` - set rules for auto-label on cards
 
 Custom card filters

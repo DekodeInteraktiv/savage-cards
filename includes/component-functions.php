@@ -124,3 +124,20 @@ if ( ! function_exists( 'savage_card_link' ) ) {
 		] );
 	}
 }
+
+if ( ! function_exists( 'savage_card_linkteaser' ) ) {
+	/**
+	 * Link teaser text
+	 *
+	 * @param array $args Component args.
+	 */
+	function savage_card_linkteaser( $args ) {
+		$savage_teaser = apply_filters( 'savage/card/components/savage_link/teaser', get_post_meta( $args['id'], 'savage_link_title', true ), $args );
+
+		if ( ! empty( $savage_teaser ) ) {
+			savage_card_component( 'linkteaser', [
+				'teasertext' => $savage_teaser,
+			] );
+		}
+	}
+}
