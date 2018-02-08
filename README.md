@@ -46,6 +46,9 @@ Custom card filters
 
 ## Changelog
 
+### 1.0.3
+- Added new component link teaser
+
 ### 1.0.2
 - Deprecated `savage/card/meta/tagline_types` filter.
 - Added new component to default card: label.
