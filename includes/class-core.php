@@ -100,25 +100,30 @@ class Core {
 					'callback' => 'savage_card_image',
 					'priority' => 10,
 				],
+				'icon'       => [
+					'filter'   => 'body',
+					'callback' => 'savage_card_icon',
+					'priority' => 10,
+				],
 				'label'      => [
 					'filter'   => 'body',
 					'callback' => 'savage_card_label',
-					'priority' => 10,
+					'priority' => 20,
 				],
 				'heading'    => [
 					'filter'   => 'body',
 					'callback' => 'savage_card_heading',
-					'priority' => 20,
+					'priority' => 30,
 				],
 				'excerpt'    => [
 					'filter'   => 'body',
 					'callback' => 'savage_card_excerpt',
-					'priority' => 30,
+					'priority' => 40,
 				],
 				'linkteaser' => [
 					'filter'   => 'body',
 					'callback' => 'savage_card_linkteaser',
-					'priority' => 40,
+					'priority' => 50,
 				],
 				'link'       => [
 					'filter'   => 'footer',

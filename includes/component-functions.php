@@ -37,6 +37,23 @@ if ( ! function_exists( 'savage_card_image' ) ) {
 	}
 }
 
+if ( ! function_exists( 'savage_card_icon' ) ) {
+	/**
+	 * Icon
+	 *
+	 * @param array $args Component args.
+	 */
+	function savage_card_icon( $args ) {
+		$icon = (string) apply_filters( 'savage/card/components/icon', '', $args );
+
+		if ( ! empty( $icon ) ) {
+			savage_card_component( 'icon', [
+				'icon' => $icon,
+			] );
+		}
+	}
+}
+
 if ( ! function_exists( 'savage_card_label' ) ) {
 	/**
 	 * Label
