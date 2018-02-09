@@ -23,24 +23,6 @@ if ( empty( $args['icon'] ) ) {
 // Add card classname.
 savage_card_add_classname( 'savage-has-icon' );
 
-?>
-<div class="savage-card-icon">
-	<div class="savage-card-icon-inner">
-		<div class="savage-card-icon-content">
-			<?php
-				echo wp_kses( $args['icon'], [
-					'svg'  => [
-						'class'   => true,
-						'id'      => true,
-						'viewbox' => true,
-						'xmlns'   => true,
-					],
-					'path' => [
-						'class' => true,
-						'd'     => true,
-					],
-				] );
-			?>
-		</div>
-	</div>
-</div>
+savage_card_component( 'body-header', [
+	'content' => sprintf( '<div class="savage-card-icon">%s</div>', $args['icon'] ),
+] );

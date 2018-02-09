@@ -62,10 +62,11 @@ abstract class Card {
 				<?php
 
 				/*
-				 * @hooked savage_card_label - 10
-				 * @hooked savage_card_heading - 20
-				 * @hooked savage_card_excerpt - 30
-				 * @hooked savage_card_linkteaser - 40
+				 * @hooked savage_card_body_header - 10
+				 * @hooked savage_card_label - 20
+				 * @hooked savage_card_heading - 30
+				 * @hooked savage_card_excerpt - 40
+				 * @hooked savage_card_linkteaser - 50
 				 */
 				do_action( 'savage/card/template/body/' . $this->name, $args );
 

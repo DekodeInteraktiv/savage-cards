@@ -102,7 +102,7 @@ class Core {
 				],
 				'icon'       => [
 					'filter'   => 'body',
-					'callback' => 'savage_card_icon',
+					'callback' => 'savage_card_body_header',
 					'priority' => 10,
 				],
 				'label'      => [
