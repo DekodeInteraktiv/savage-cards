@@ -61,7 +61,7 @@ class Core {
 		add_action( 'acf/include_fields', [ $this, 'register_card_meta_field_group' ] );
 
 		// Register cards (need to be after plugins/themes has applied savage card filter).
-		add_action( 'plugins_loaded', [ $this, 'register_cards' ], 50 );
+		add_action( 'after_setup_theme', [ $this, 'register_cards' ] );
 
 		add_action( 'savage/register_cards', [ $this, 'register_core_cards' ] );
 	}
