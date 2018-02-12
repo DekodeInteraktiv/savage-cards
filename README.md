@@ -47,6 +47,12 @@ Custom card filters
 
 ## Changelog
 
+### 1.0.4
+- Added `Icon` component.
+- Added `Avatar` component.
+- Added support for custom attributes on heading component
+- Switched from `plugins_loaded` to `after_setup_theme` to allow themes to register new cards.
+
 ### 1.0.3
 - Added new component link teaser
 
