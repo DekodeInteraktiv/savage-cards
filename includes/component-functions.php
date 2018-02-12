@@ -37,6 +37,67 @@ if ( ! function_exists( 'savage_card_image' ) ) {
 	}
 }
 
+if ( ! function_exists( 'savage_card_icon' ) ) {
+	/**
+	 * Icon
+	 *
+	 * @param array $args Component args.
+	 */
+	function savage_card_icon( $args ) {
+		$icon = (string) apply_filters( 'savage/card/components/icon', '', $args );
+
+		if ( ! empty( $icon ) ) {
+			savage_card_component( 'icon', [
+				'icon' => $icon,
+			] );
+		}
+	}
+}
+
+if ( ! function_exists( 'savage_card_avatar' ) ) {
+	/**
+	 * Avatar
+	 *
+	 * @param array $args Component args.
+	 */
+	function savage_card_avatar( $args ) {
+		$id = (int) absint( apply_filters( 'savage/card/components/avatar', 0, $args ) );
+
+		if ( 0 !== $id ) {
+			savage_card_component( 'avatar', [
+				'id' => $id,
+			] );
+		}
+	}
+}
+
+if ( ! function_exists( 'savage_card_body_header' ) ) {
+	/**
+	 * Body header
+	 *
+	 * @param array $args Component args.
+	 */
+	function savage_card_body_header( $args ) {
+		$components = (array) apply_filters( 'savage/card/components/body_header/components', [
+			'savage_card_icon',
+			'savage_card_avatar',
+		], $args );
+
+		foreach ( $components as $component ) {
+			if ( function_exists( $component ) ) {
+				ob_start();
+				call_user_func( $component, $args );
+				$content = ob_get_clean();
+
+				if ( ! empty( $content ) ) {
+					echo $content; // WPCS: XSS OK.
+					break;
+				}
+			}
+		}
+	}
+}
+
 if ( ! function_exists( 'savage_card_label' ) ) {
 	/**
 	 * Label
