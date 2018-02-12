@@ -144,6 +144,7 @@ if ( ! function_exists( 'savage_card_heading' ) ) {
 		if ( ! empty( $title ) ) {
 			savage_card_component( 'heading', [
 				'title' => $title,
+				'attr'  => apply_filters( 'savage/card/components/heading/attr', [], $args ),
 			] );
 		}
 	}

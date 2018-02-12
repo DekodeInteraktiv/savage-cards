@@ -112,3 +112,41 @@ function savage_card_component( string $name, array $args = [] ) {
 		include $component;
 	}
 }
+
+/**
+ * Build tag attributes
+ *
+ * @param array $attr Array of attributes.
+ * @return string Attributes.
+ */
+function savage_attributes( array $attr = [] ) : string {
+	$attributes = '';
+
+	foreach ( $attr as $name => $value ) {
+		if ( empty( $value ) || ! $value ) {
+			continue;
+		}
+
+		if ( ! $name ) {
+			$attributes .= ' ' . esc_attr( $value );
+			continue;
+		}
+
+		$name = esc_attr( $name );
+
+		if ( is_bool( $value ) ) {
+			$attributes .= " {$name}";
+			continue;
+		}
+
+		if ( 'src' === $name || 'href' === $name ) {
+			$value = esc_url( $value );
+		} else {
+			$value = esc_attr( $value );
+		}
+
+		$attributes .= " {$name}=\"{$value}\"";
+	}
+
+	return $attributes;
+}
