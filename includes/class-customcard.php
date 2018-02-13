@@ -130,7 +130,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 							'name'         => 'card_content_flex',
 							'type'         => 'flexible_content',
 							'instructions' => '',
-							'required'     => 1,
+							'required'     => 0,
 							'layouts'      => [
 								[
 									'key'        => $this->field_key . '_flex_standard',
@@ -185,7 +185,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 								],
 							],
 							'button_label' => __( 'Select a card type', 'savage-cards' ),
-							'min'          => 1,
+							'min'          => 0,
 							'max'          => 1,
 						],
 					],
