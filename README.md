@@ -47,6 +47,9 @@ Custom card filters
 
 ## Changelog
 
+### 1.0.5
+- Custom card does not require a layout as default. Can use savage meta fields with default card for simpler custom card. 
+
 ### 1.0.4
 - Added `Icon` component.
 - Added `Avatar` component.
