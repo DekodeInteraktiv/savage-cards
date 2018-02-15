@@ -14,6 +14,9 @@ if ( ! function_exists( 'savage_card_image' ) ) {
 	function savage_card_image( $args ) {
 		$image_type = (string) get_post_meta( $args['id'], 'savage_image_type', true );
 
+		$default_image_size = 'full' === $args['size'] ? 'large' : 'medium_large';
+		$image_size         = apply_filters( 'savage/card/components/image/size', $default_image_size, $args );
+
 		switch ( $image_type ) {
 			case 'none':
 				$url = '';
@@ -21,11 +24,16 @@ if ( ! function_exists( 'savage_card_image' ) ) {
 
 			case 'alternative':
 				$image_id = get_post_meta( $args['id'], 'savage_image', true );
-				$url      = wp_get_attachment_url( $image_id );
-				break;
+				$image    = wp_get_attachment_image_src( $image_id, $image_size );
 
+				if ( is_array( $image ) && ! empty( $image ) ) {
+					$url = $image[0];
+				} else {
+					$url = wp_get_attachment_url( $image_id ); // Default image as fallback.
+				}
+				break;
 			default:
-				$url = get_the_post_thumbnail_url( $args['id'] );
+				$url = get_the_post_thumbnail_url( $args['id'], $image_size );
 				break;
 		}
 
