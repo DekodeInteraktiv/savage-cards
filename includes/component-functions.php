@@ -13,7 +13,9 @@ if ( ! function_exists( 'savage_card_image' ) ) {
 	 */
 	function savage_card_image( $args ) {
 		$image_type = (string) get_post_meta( $args['id'], 'savage_image_type', true );
-		$image_size = apply_filters( 'savage/card/components/image/size', 'medium_large' );
+
+		$default_image_size = 'full' === $args['size'] ? 'large' : 'medium_large';
+		$image_size = apply_filters( 'savage/card/components/image/size', $default_image_size, $args );
 
 		switch ( $image_type ) {
 			case 'none':
