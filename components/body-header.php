@@ -28,19 +28,21 @@ savage_card_add_classname( 'savage-has-body-header' );
 ?>
 <div class="savage-card-body-header">
 	<div class="savage-card-body-header-inner">
-		<?php
-		echo wp_kses( $args['content'], array_merge( $allowedposttags, [
-			'svg'  => [
-				'class'   => true,
-				'id'      => true,
-				'viewbox' => true,
-				'xmlns'   => true,
-			],
-			'path' => [
-				'class' => true,
-				'd'     => true,
-			],
-		] ) );
-		?>
+		<div class="savage-card-body-header-content">
+			<?php
+			echo wp_kses( $args['content'], array_merge( $allowedposttags, [
+				'svg'  => [
+					'class'   => true,
+					'id'      => true,
+					'viewbox' => true,
+					'xmlns'   => true,
+				],
+				'path' => [
+					'class' => true,
+					'd'     => true,
+				],
+			] ) );
+			?>
+		</div>
 	</div>
 </div>
