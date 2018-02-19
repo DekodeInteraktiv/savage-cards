@@ -1,7 +1,7 @@
 # Changelog
 
 ## 1.0.6
-- Added an extra div to `body-header` component. Related to fixing a bug in hogan-grid. See [hogan-grid#18][https://github.com/DekodeInteraktiv/hogan-grid/issues/18]
+- Added an extra div to `body-header` component. Related to fixing a bug in hogan-grid. See [hogan-grid#18](https://github.com/DekodeInteraktiv/hogan-grid/issues/18)
 
 ## 1.0.5
 - Use `medium_large` image size as default for all cards.
