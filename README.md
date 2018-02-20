@@ -34,10 +34,14 @@ Meta fields filters:
 
 Custom card filters
 - `savage/card/custom/bg_color_options` - filter for adding themes's color palette to card bg_color options.
-- `savage/card/custom/image_options` - filter for changing image options on custom card.
+- `savage/card/custom/layouts` - add layouts to custom card flexible content area
+- `savage/card/custom/layout/editor/allow_media_upload` - allow media button in editor layout
+- `savage/card/custom/layout/editor/toolbar` - customize toolbar for editor layout
+- `savage/card/custom/layout/editor/tabs` - customize tabs for editor layout
 
 ## Available actions
 - `savage/card/template/init` - Runs before template markup
 - `savage/card/template/header/{ template name }` - top section section of template
 - `savage/card/template/body/{ template name }` - middle section of template
 - `savage/card/template/footer/{ template name }` - bottom section of template
+- `savage/card/custom/body/layout_content` - content of custom card if layouts are used
