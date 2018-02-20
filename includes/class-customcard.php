@@ -33,8 +33,12 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		public function __construct() {
 			$this->components = [
 				'image',
+				'body-header',
+				'label',
 				'heading',
 				'excerpt',
+				'linkteaser',
+				'link',
 			];
 
 			$this->post_type = 'savage_custom_card';
@@ -129,10 +133,10 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 						],
 						[
 							'key'          => $this->field_key . '_flex',
-							'label'        => __( 'Card fields', 'savage-cards' ),
+							'label'        => __( 'Card content', 'savage-cards' ),
 							'name'         => 'card_content_flex',
 							'type'         => 'flexible_content',
-							'instructions' => '',
+							'instructions' => __( 'If layouts are added, layout content overrides card meta fields', 'savage-cards' ),
 							'required'     => 0,
 							'layouts'      => apply_filters(
 								'savage/card/custom/layouts', [
@@ -185,11 +189,14 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 
 			$toolbars['savage_card_toolbar'] = [
 				1 => [
+					'formatselect',
 					'bold',
 					'italic',
 					'blockquote',
 					'numlist',
 					'bullist',
+					'link',
+					'unlink',
 					'pastetext',
 					'removeformat',
 					'code',
@@ -210,17 +217,16 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 			$layout_content = '';
 			$layouts        = get_field( 'card_content_flex', $args['id'] );
 
-			// TODO: support layouts added with filter
 			if ( ! empty( $layouts ) ) {
-				// Only one layout allowed.
+				// Only one layout possible on a card.
 				$active_layout = reset( $layouts );
+
+				do_action( 'savage/card/custom/body/layout_content', $active_layout );
 
 				if ( 'card_content' === $active_layout['acf_fc_layout'] ) {
 					remove_all_actions( 'savage/card/template/body/' . $this->post_type );
 					echo wp_kses_post( $active_layout['content'] );
 				}
-			} else {
-				// TODO: use default card.
 			}
 		}
 
