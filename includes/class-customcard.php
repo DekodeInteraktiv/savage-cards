@@ -42,6 +42,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 			add_filter( 'acf/fields/wysiwyg/toolbars', [ $this, 'append_card_toolbar' ] );
 			add_action( 'acf/include_fields', [ $this, 'register_field_group' ] );
 
+			add_action( 'savage/card/template/body/' . $this->post_type, [ $this, 'template_content' ], 10 );
 			add_action( 'savage/card/template/footer/' . $this->post_type, [ $this, 'template_link' ], 10 );
 
 			parent::__construct( $this->post_type );
@@ -148,7 +149,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 												'label'   => '',
 												'tabs'    => apply_filters( 'savage/card/custom/editor/tabs', 'all' ),
 												'media_upload' => apply_filters( 'savage/card/custom/editor/allow_media_upload', 0 ),
-												'toolbar' => apply_filters( 'savage/card/custom/editor/toolbar', 'hogan' ),
+												'toolbar' => apply_filters( 'savage/card/custom/editor/toolbar', 'savage_card_toolbar' ),
 											],
 										],
 										'min'        => '',
@@ -200,6 +201,29 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		}
 
 		/**
+		 * Custom card layout content
+		 *
+		 * @param array $args Component args.
+		 */
+		public function template_content( $args ) {
+
+			$layout_content = '';
+			$layouts        = get_field( 'card_content_flex', $args['id'] );
+
+			if ( ! empty( $layouts ) ) {
+				// Only one layout allowed.
+				$active_layout = reset( $layouts );
+
+				if ( 'card_content' === $active_layout['acf_fc_layout'] ) {
+					remove_all_actions( 'savage/card/template/body/' . $this->post_type );
+					echo wp_kses_post( $active_layout['content'] );
+				}
+			} else {
+				// use default card.
+			}
+		}
+
+		/**
 		 * Custom card template link
 		 *
 		 * @param array $args Component args.
@@ -211,6 +235,5 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 				savage_card_component( 'link', $link );
 			}
 		}
-
 	}
 }
