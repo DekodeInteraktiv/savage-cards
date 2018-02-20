@@ -210,6 +210,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 			$layout_content = '';
 			$layouts        = get_field( 'card_content_flex', $args['id'] );
 
+			// TODO: support layouts added with filter
 			if ( ! empty( $layouts ) ) {
 				// Only one layout allowed.
 				$active_layout = reset( $layouts );
@@ -219,7 +220,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 					echo wp_kses_post( $active_layout['content'] );
 				}
 			} else {
-				// use default card.
+				// TODO: use default card.
 			}
 		}
 
