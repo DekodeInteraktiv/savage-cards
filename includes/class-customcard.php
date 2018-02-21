@@ -33,8 +33,12 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		public function __construct() {
 			$this->components = [
 				'image',
+				'body-header',
+				'label',
 				'heading',
 				'excerpt',
+				'linkteaser',
+				'link',
 			];
 
 			$this->post_type = 'savage_custom_card';
@@ -42,6 +46,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 			add_filter( 'acf/fields/wysiwyg/toolbars', [ $this, 'append_card_toolbar' ] );
 			add_action( 'acf/include_fields', [ $this, 'register_field_group' ] );
 
+			add_action( 'savage/card/template/body/' . $this->post_type, [ $this, 'template_content' ], 10 );
 			add_action( 'savage/card/template/footer/' . $this->post_type, [ $this, 'template_link' ], 10 );
 
 			parent::__construct( $this->post_type );
@@ -54,36 +59,38 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		 */
 		public function register_card_post_type() {
 
-			register_post_type( $this->post_type, [
-				'labels'              => [
-					'name'               => esc_html_x( 'Custom cards', 'post type general name', 'savage-cards' ),
-					'singular_name'      => esc_html_x( 'Custom cards', 'post type singular name', 'savage-cards' ),
-					'menu_name'          => esc_html_x( 'Custom cards', 'admin menu', 'savage-cards' ),
-					'name_admin_bar'     => esc_html_x( 'Custom cards', 'add new on admin bar', 'savage-cards' ),
-					'add_new'            => esc_html__( 'Add new', 'savage-cards' ),
-					'add_new_item'       => esc_html__( 'Add', 'savage-cards' ),
-					'new_item'           => esc_html__( 'Add', 'savage-cards' ),
-					'edit_item'          => esc_html__( 'Edit', 'savage-cards' ),
-					'view_item'          => esc_html__( 'Show', 'savage-cards' ),
-					'all_items'          => esc_html__( 'Custom cards', 'savage-cards' ),
-					'search_items'       => esc_html__( 'Search', 'savage-cards' ),
-					'parent_item_colon'  => esc_html__( 'Parent:', 'savage-cards' ),
-					'not_found'          => esc_html__( 'Nothing found.', 'savage-cards' ),
-					'not_found_in_trash' => esc_html__( 'Nothing found in trashcan.', 'savage-cards' ),
-				],
-				'public'              => false,
-				'publicly_queryable'  => false,
-				'exclude_from_search' => true,
-				'show_in_nav_menus'   => false,
-				'show_ui'             => true,
-				'show_in_menu'        => true,
-				'has_archive'         => false,
-				'rewrite'             => false,
-				'capability_type'     => 'post',
-				'hierarchical'        => false,
-				'supports'            => [ 'title', 'revisions', 'thumbnail' ],
-				'menu_icon'           => 'dashicons-portfolio',
-			] );
+			register_post_type(
+				$this->post_type, [
+					'labels'              => [
+						'name'               => esc_html_x( 'Custom cards', 'post type general name', 'savage-cards' ),
+						'singular_name'      => esc_html_x( 'Custom cards', 'post type singular name', 'savage-cards' ),
+						'menu_name'          => esc_html_x( 'Custom cards', 'admin menu', 'savage-cards' ),
+						'name_admin_bar'     => esc_html_x( 'Custom cards', 'add new on admin bar', 'savage-cards' ),
+						'add_new'            => esc_html__( 'Add new', 'savage-cards' ),
+						'add_new_item'       => esc_html__( 'Add', 'savage-cards' ),
+						'new_item'           => esc_html__( 'Add', 'savage-cards' ),
+						'edit_item'          => esc_html__( 'Edit', 'savage-cards' ),
+						'view_item'          => esc_html__( 'Show', 'savage-cards' ),
+						'all_items'          => esc_html__( 'Custom cards', 'savage-cards' ),
+						'search_items'       => esc_html__( 'Search', 'savage-cards' ),
+						'parent_item_colon'  => esc_html__( 'Parent:', 'savage-cards' ),
+						'not_found'          => esc_html__( 'Nothing found.', 'savage-cards' ),
+						'not_found_in_trash' => esc_html__( 'Nothing found in trashcan.', 'savage-cards' ),
+					],
+					'public'              => false,
+					'publicly_queryable'  => false,
+					'exclude_from_search' => true,
+					'show_in_nav_menus'   => false,
+					'show_ui'             => true,
+					'show_in_menu'        => true,
+					'has_archive'         => false,
+					'rewrite'             => false,
+					'capability_type'     => 'post',
+					'hierarchical'        => false,
+					'supports'            => [ 'title', 'revisions', 'thumbnail' ],
+					'menu_icon'           => 'dashicons-portfolio',
+				]
+			);
 		}
 
 		/**
@@ -126,64 +133,34 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 						],
 						[
 							'key'          => $this->field_key . '_flex',
-							'label'        => __( 'Card fields', 'savage-cards' ),
+							'label'        => __( 'Card content', 'savage-cards' ),
 							'name'         => 'card_content_flex',
 							'type'         => 'flexible_content',
-							'instructions' => '',
+							'instructions' => __( 'If layouts are added, layout content overrides card meta fields', 'savage-cards' ),
 							'required'     => 0,
-							'layouts'      => [
-								[
-									'key'        => $this->field_key . '_flex_standard',
-									'name'       => 'card_standard',
-									'label'      => __( 'Standard', 'savage-cards' ),
-									'display'    => 'block',
-									'sub_fields' => [
-										[
-											'key'          => $this->field_key . '_flex_standard_tagline',
-											'label'        => __( 'Custom card tagline', 'savage-cards' ),
-											'name'         => 'tagline',
-											'type'         => 'text',
-											'instructions' => '',
-											'required'     => 0,
-											'conditional_logic' => 0,
-											'wrapper'      => [
-												'width' => '60',
+							'layouts'      => apply_filters(
+								'savage/card/custom/layouts', [
+									[
+										'key'        => $this->field_key . '_flex_standard',
+										'name'       => 'card_content',
+										'label'      => __( 'Editor', 'savage-cards' ),
+										'display'    => 'block',
+										'sub_fields' => [
+											[
+												'key'     => $this->field_key . '_flex_editor_content',
+												'type'    => 'wysiwyg',
+												'name'    => 'content',
+												'label'   => '',
+												'tabs'    => apply_filters( 'savage/card/custom/layout/editor/tabs', 'all' ),
+												'media_upload' => apply_filters( 'savage/card/custom/layout/editor/allow_media_upload', 0 ),
+												'toolbar' => apply_filters( 'savage/card/custom/layout/editor/toolbar', 'savage_card_toolbar' ),
 											],
-											'default_value' => '',
-											'placeholder'  => '',
-											'maxlength'    => '',
 										],
-										[
-											'key'          => $this->field_key . '_flex_standard_title',
-											'label'        => __( 'Custom card title', 'savage-cards' ),
-											'name'         => 'title',
-											'type'         => 'text',
-											'instructions' => '',
-											'required'     => 1,
-											'wrapper'      => [
-												'width' => '60',
-											],
-											'default_value' => '',
-											'placeholder'  => '',
-											'prepend'      => '',
-											'append'       => '',
-											'maxlength'    => '',
-										],
-										[
-											'key'          => $this->field_key . '_flex_standard_text',
-											'label'        => __( 'Custom card text', 'savage-cards' ),
-											'name'         => 'text',
-											'type'         => 'textarea',
-											'instructions' => '',
-											'maxlength'    => '',
-											'rows'         => 2,
-											'new_lines'    => '',
-										],
+										'min'        => '',
+										'max'        => '',
 									],
-									'min'        => '',
-									'max'        => '',
-								],
-							],
+								]
+							),
 							'button_label' => __( 'Select a card type', 'savage-cards' ),
 							'min'          => 0,
 							'max'          => 1,
@@ -212,11 +189,14 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 
 			$toolbars['savage_card_toolbar'] = [
 				1 => [
+					'formatselect',
 					'bold',
 					'italic',
 					'blockquote',
 					'numlist',
 					'bullist',
+					'link',
+					'unlink',
 					'pastetext',
 					'removeformat',
 					'code',
@@ -225,6 +205,29 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 				],
 			];
 			return $toolbars;
+		}
+
+		/**
+		 * Custom card layout content
+		 *
+		 * @param array $args Component args.
+		 */
+		public function template_content( $args ) {
+
+			$layout_content = '';
+			$layouts        = get_field( 'card_content_flex', $args['id'] );
+
+			if ( ! empty( $layouts ) ) {
+				// Only one layout possible on a card.
+				$active_layout = reset( $layouts );
+
+				do_action( 'savage/card/custom/body/layout_content', $active_layout );
+
+				if ( 'card_content' === $active_layout['acf_fc_layout'] ) {
+					remove_all_actions( 'savage/card/template/body/' . $this->post_type );
+					echo wp_kses_post( $active_layout['content'] );
+				}
+			}
 		}
 
 		/**
@@ -239,6 +242,5 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 				savage_card_component( 'link', $link );
 			}
 		}
-
 	}
 }

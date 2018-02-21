@@ -287,6 +287,13 @@ class Core {
 					'value'    => 'page',
 				],
 			],
+			[
+				[
+					'param'    => 'post_type',
+					'operator' => '==',
+					'value'    => 'savage_custom_card',
+				],
+			],
 		];
 
 		// Include custom fields before and after default fields.
