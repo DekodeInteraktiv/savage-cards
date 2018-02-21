@@ -38,7 +38,6 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 				'heading',
 				'excerpt',
 				'linkteaser',
-				'link',
 			];
 
 			$this->post_type = 'savage_custom_card';
@@ -220,11 +219,10 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 			if ( ! empty( $layouts ) ) {
 				// Only one layout possible on a card.
 				$active_layout = reset( $layouts );
-
+				remove_all_actions( 'savage/card/template/body/' . $this->post_type );
 				do_action( 'savage/card/custom/body/layout_content', $active_layout );
 
 				if ( 'card_content' === $active_layout['acf_fc_layout'] ) {
-					remove_all_actions( 'savage/card/template/body/' . $this->post_type );
 					echo wp_kses_post( $active_layout['content'] );
 				}
 			}
