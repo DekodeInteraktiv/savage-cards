@@ -24,5 +24,5 @@ if ( empty( $args['content'] ) ) {
 savage_card_add_classname( 'savage-has-meta' );
 
 savage_card_component( 'body-header', [
-	'content' => sprintf( '<div class="savage-card-meta">%s</div>', $args['content'] ),
+	'content' => sprintf( '<div class="savage-card-meta"><div class="savage-card-meta-inner">%s</div></div>', $args['content'] ),
 ] );
