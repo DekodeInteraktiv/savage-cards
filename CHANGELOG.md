@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.7
+- Added meta component. See [#31](https://github.com/DekodeInteraktiv/savage-cards/pull/31)
+
 ## 1.0.6
 - Added an extra div to `body-header` component. Related to fixing a bug in hogan-grid. See [hogan-grid#18](https://github.com/DekodeInteraktiv/hogan-grid/issues/18)
 

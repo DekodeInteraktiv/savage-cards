@@ -45,6 +45,23 @@ if ( ! function_exists( 'savage_card_image' ) ) {
 	}
 }
 
+if ( ! function_exists( 'savage_card_meta' ) ) {
+	/**
+	 * Meta
+	 *
+	 * @param array $args Component args.
+	 */
+	function savage_card_meta( $args ) {
+		$content = (string) apply_filters( 'savage/card/components/meta', '', $args );
+
+		if ( ! empty( $content ) ) {
+			savage_card_component( 'meta', [
+				'content' => $content,
+			] );
+		}
+	}
+}
+
 if ( ! function_exists( 'savage_card_icon' ) ) {
 	/**
 	 * Icon
@@ -89,6 +106,7 @@ if ( ! function_exists( 'savage_card_body_header' ) ) {
 		$components = (array) apply_filters( 'savage/card/components/body_header/components', [
 			'savage_card_icon',
 			'savage_card_avatar',
+			'savage_card_meta',
 		], $args );
 
 		foreach ( $components as $component ) {
