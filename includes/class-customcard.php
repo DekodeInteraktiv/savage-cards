@@ -217,9 +217,9 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 			$layouts        = get_field( 'card_content_flex', $args['id'] );
 
 			if ( ! empty( $layouts ) ) {
+
 				// Only one layout possible on a card.
 				$active_layout = reset( $layouts );
-				remove_all_actions( 'savage/card/template/body/' . $this->post_type );
 				do_action( 'savage/card/custom/body/layout_content', $active_layout );
 
 				if ( 'card_content' === $active_layout['acf_fc_layout'] ) {
