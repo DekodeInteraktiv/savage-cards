@@ -38,7 +38,6 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 				'label',
 				'heading',
 				'excerpt',
-			// 'linkteaser',
 			];
 
 			$this->post_type = 'savage_custom_card';
