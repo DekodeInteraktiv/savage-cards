@@ -50,6 +50,7 @@ abstract class Card {
 		do_action( 'savage/card/template/init', $this->name );
 
 		ob_start();
+
 		/*
 		 * @hooked savage_card_image - 10
 		 */

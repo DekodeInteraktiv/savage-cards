@@ -38,7 +38,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 				'label',
 				'heading',
 				'excerpt',
-			//              'linkteaser',
+			// 'linkteaser',
 			];
 
 			$this->post_type = 'savage_custom_card';
@@ -244,6 +244,11 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 			}
 		}
 
+		/**
+		 * Get card markup
+		 *
+		 * @param array $args Card option.
+		 */
 		public function get_markup( array $args = [] ) {
 
 			remove_action( 'savage/card/template/header/savage_custom_card', 'savage_card_image', 10 );
