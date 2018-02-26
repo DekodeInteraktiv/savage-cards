@@ -186,7 +186,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		 *
 		 * @return array $toolbars Array with new toolbars.
 		 */
-		public function append_card_toolbar( array $toolbars ): array  {
+		public function append_card_toolbar( array $toolbars ) : array {
 
 			$toolbars['savage_card_toolbar'] = [
 				1 => [
