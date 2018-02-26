@@ -240,7 +240,11 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 			if ( ! empty( $link ) && empty( $link['title'] ) ) {
 				savage_card_component( 'link', $link );
 			} else {
-				printf( '<a href="%1$s" target="%2$s" class="savage-card-teaser">%3$s</a>', $link['url'], $link['target'], $link['title'] );
+				printf( '<a href="%s" class="savage-card-teaser"%s>%s</a>',
+					esc_url( $link['url'] ),
+					! empty( $link['target'] ) ? sprintf( ' target="%s"', esc_attr( $link['target'] ) ) : '',
+					esc_html( $link['title'] )
+				);
 			}
 		}
 
