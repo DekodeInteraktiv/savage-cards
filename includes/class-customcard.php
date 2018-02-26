@@ -6,6 +6,7 @@
  */
 
 declare( strict_types = 1 );
+
 namespace Dekode\Savage;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -37,7 +38,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 				'label',
 				'heading',
 				'excerpt',
-				'linkteaser',
+			//              'linkteaser',
 			];
 
 			$this->post_type = 'savage_custom_card';
@@ -182,9 +183,10 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		 * Add custom toolbars
 		 *
 		 * @param array $toolbars Current Toolbars.
+		 *
 		 * @return array $toolbars Array with new toolbars.
 		 */
-		public function append_card_toolbar( array $toolbars ) : array {
+		public function append_card_toolbar( array $toolbars ): array  {
 
 			$toolbars['savage_card_toolbar'] = [
 				1 => [
@@ -203,6 +205,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 					'redo',
 				],
 			];
+
 			return $toolbars;
 		}
 
@@ -213,11 +216,8 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		 */
 		public function template_content( $args ) {
 
-			$layout_content = '';
-			$layouts        = get_field( 'card_content_flex', $args['id'] );
-
+			$layouts = get_field( 'card_content_flex', $args['id'] );
 			if ( ! empty( $layouts ) ) {
-
 				// Only one layout possible on a card.
 				$active_layout = reset( $layouts );
 				do_action( 'savage/card/custom/body/layout_content', $active_layout );
@@ -234,11 +234,35 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		 * @param array $args Component args.
 		 */
 		public function template_link( $args ) {
+
 			$link = get_post_meta( $args['id'], 'card_link', true );
 
-			if ( ! empty( $link ) ) {
+			if ( ! empty( $link ) && empty( $link['title'] ) ) {
 				savage_card_component( 'link', $link );
+			} else {
+				printf( '<a href="%1$s" target="%2$s" class="savage-card-teaser">%3$s</a>', $link['url'], $link['target'], $link['title'] );
 			}
 		}
+
+		public function get_markup( array $args = [] ) {
+
+			remove_action( 'savage/card/template/header/savage_custom_card', 'savage_card_image', 10 );
+			remove_action( 'savage/card/template/body/savage_custom_card', ' savage_card_body_header', 10 );
+			remove_action( 'savage/card/template/body/savage_custom_card', 'savage_card_heading', 30 );
+			remove_action( 'savage/card/template/body/savage_custom_card', 'savage_card_excerpt', 40 );
+			remove_action( 'savage/card/template/body/savage_custom_card', 'savage_card_linkteaser', 50 );
+
+			$layouts = get_field( 'card_content_flex', $args['id'] );
+			if ( empty( $layouts ) ) {
+				add_action( 'savage/card/template/body/savage_custom_card/' . $args['id'], 'savage_card_body_header', 10 );
+				add_action( 'savage/card/template/header/savage_custom_card/' . $args['id'], 'savage_card_image', 10 );
+				add_action( 'savage/card/template/body/savage_custom_card/' . $args['id'], 'savage_card_heading', 30 );
+				add_action( 'savage/card/template/body/savage_custom_card/' . $args['id'], 'savage_card_excerpt', 40 );
+				add_action( 'savage/card/template/body/savage_custom_card/' . $args['id'], 'savage_card_linkteaser', 50 );
+			}
+
+			return parent::get_markup( $args );
+		}
+
 	}
 }
