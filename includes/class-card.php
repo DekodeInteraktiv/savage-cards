@@ -55,6 +55,7 @@ abstract class Card {
 		 * @hooked savage_card_image - 10
 		 */
 		do_action( 'savage/card/template/header/' . $this->name, $args );
+		do_action( 'savage/card/template/header/' . $this->name . '/' . $args['id'], $args );
 
 		?>
 		<div class="savage-card-body">
@@ -69,7 +70,7 @@ abstract class Card {
 				 * @hooked savage_card_linkteaser - 50
 				 */
 				do_action( 'savage/card/template/body/' . $this->name, $args );
-
+				do_action( 'savage/card/template/body/' . $this->name . '/' . $args['id'], $args );
 				?>
 			</div>
 		</div>
