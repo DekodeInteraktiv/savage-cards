@@ -227,12 +227,13 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		 */
 		public function template_link( $args ) {
 
-			$link = get_post_meta( $args['id'], 'card_link', true );
-
-			if ( ! empty( $link ) && empty( $link['title'] ) ) {
+			$layouts = get_field( 'card_content_flex', $args['id'] );
+			$link    = get_post_meta( $args['id'], 'card_link', true );
+			if ( empty( $layouts ) ) {
 				savage_card_component( 'link', $link );
-			} else {
-				printf( '<a href="%s" class="savage-card-teaser"%s>%s</a>',
+			} elseif ( ! empty( $link['title'] ) ) {
+				printf(
+					'<a href="%s" class="savage-card-teaser"%s>%s</a>',
 					esc_url( $link['url'] ),
 					! empty( $link['target'] ) ? sprintf( ' target="%s"', esc_attr( $link['target'] ) ) : '',
 					esc_html( $link['title'] )
