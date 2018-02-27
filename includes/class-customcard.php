@@ -32,13 +32,6 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		 * Card constructor.
 		 */
 		public function __construct() {
-			$this->components = [
-				'image',
-				'body-header',
-				'label',
-				'heading',
-				'excerpt',
-			];
 
 			$this->post_type = 'savage_custom_card';
 			$this->register_card_post_type();
@@ -256,15 +249,17 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 
 			remove_action( 'savage/card/template/header/savage_custom_card', 'savage_card_image', 10 );
 			remove_action( 'savage/card/template/body/savage_custom_card', ' savage_card_body_header', 10 );
+			remove_action( 'savage/card/template/body/savage_custom_card', ' savage_card_label', 20 );
 			remove_action( 'savage/card/template/body/savage_custom_card', 'savage_card_heading', 30 );
 			remove_action( 'savage/card/template/body/savage_custom_card', 'savage_card_excerpt', 40 );
 			remove_action( 'savage/card/template/body/savage_custom_card', 'savage_card_linkteaser', 50 );
 
 			$layouts = get_field( 'card_content_flex', $args['id'] );
 			if ( empty( $layouts ) ) {
-				add_action( 'savage/card/template/body/savage_custom_card/' . $args['id'], 'savage_card_body_header', 10 );
 				add_action( 'savage/card/template/header/savage_custom_card/' . $args['id'], 'savage_card_image', 10 );
+				add_action( 'savage/card/template/body/savage_custom_card/' . $args['id'], 'savage_card_body_header', 10 );
 				add_action( 'savage/card/template/body/savage_custom_card/' . $args['id'], 'savage_card_heading', 30 );
+				add_action( 'savage/card/template/body/savage_custom_card/' . $args['id'], 'savage_card_label', 20 );
 				add_action( 'savage/card/template/body/savage_custom_card/' . $args['id'], 'savage_card_excerpt', 40 );
 				add_action( 'savage/card/template/body/savage_custom_card/' . $args['id'], 'savage_card_linkteaser', 50 );
 			}
