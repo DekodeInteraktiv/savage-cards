@@ -144,6 +144,7 @@ class Core {
 	public function register_core_cards() {
 		require_once 'class-defaultcard.php';
 		require_once 'class-customcard.php';
+		require_once 'class-customcardfallback.php';
 
 		savage_register_card( new \Dekode\Savage\DefaultCard() );
 		savage_register_card( new \Dekode\Savage\CustomCard() );
