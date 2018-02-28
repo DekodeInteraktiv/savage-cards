@@ -38,8 +38,9 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 			add_filter( 'acf/fields/wysiwyg/toolbars', [ $this, 'append_card_toolbar' ] );
 			add_action( 'acf/include_fields', [ $this, 'register_field_group' ] );
 
-			add_action( 'savage/card/template/body/' . $this->post_type, [ $this, 'template_content' ], 10 );
-			add_action( 'savage/card/template/footer/' . $this->post_type, [ $this, 'template_link' ], 10 );
+			add_action( 'savage/card/template/header/' . $this->post_type, [ $this, 'template_header' ], 10 );
+			add_action( 'savage/card/template/body/' . $this->post_type, [ $this, 'template_body' ], 10 );
+			add_action( 'savage/card/template/footer/' . $this->post_type, [ $this, 'template_footer' ], 10 );
 
 			parent::__construct( $this->post_type );
 		}
@@ -202,14 +203,36 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		}
 
 		/**
+		 * Check if post has custom content
+		 *
+		 * @param int $id Post id.
+		 * @return bool True if post has custom content, otherwise false.
+		 */
+		private function has_custom_content( $id ) {
+			return ! empty( get_post_meta( $id, 'card_content_flex', true ) );
+		}
+
+		/**
 		 * Custom card layout content
 		 *
 		 * @param array $args Component args.
 		 */
-		public function template_content( $args ) {
+		public function template_header( $args ) {
+			if ( ! $this->has_custom_content( $args['id'] ) ) {
+				do_action( 'savage/card/template/header/custom_fallback_card', $args );
+			}
+		}
 
-			$layouts = get_field( 'card_content_flex', $args['id'] );
-			if ( ! empty( $layouts ) ) {
+		/**
+		 * Custom card layout content
+		 *
+		 * @param array $args Component args.
+		 */
+		public function template_body( $args ) {
+			if ( ! $this->has_custom_content( $args['id'] ) ) {
+				do_action( 'savage/card/template/body/custom_fallback_card', $args );
+			} else {
+				$layouts = get_field( 'card_content_flex', $args['id'] );
 				// Only one layout possible on a card.
 				$active_layout = reset( $layouts );
 				do_action( 'savage/card/custom/body/layout_content', $active_layout );
@@ -225,13 +248,11 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		 *
 		 * @param array $args Component args.
 		 */
-		public function template_link( $args ) {
-
-			$layouts = get_field( 'card_content_flex', $args['id'] );
-			$link    = get_post_meta( $args['id'], 'card_link', true );
-			if ( empty( $layouts ) ) {
-				savage_card_component( 'link', $link );
+		public function template_footer( $args ) {
+			if ( ! $this->has_custom_content( $args['id'] ) ) {
+				do_action( 'savage/card/template/footer/custom_fallback_card', $args );
 			} else {
+				$link  = get_post_meta( $args['id'], 'card_link', true );
 				$title = $this->get_link_field_title( $link );
 				printf(
 					'<a href="%s" class="savage-card-teaser"%s>%s</a>',
@@ -240,33 +261,6 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 					esc_html( $title )
 				);
 			}
-		}
-
-		/**
-		 * Get card markup
-		 *
-		 * @param array $args Card option.
-		 */
-		public function get_markup( array $args = [] ) {
-
-			remove_action( 'savage/card/template/header/savage_custom_card', 'savage_card_image', 10 );
-			remove_action( 'savage/card/template/body/savage_custom_card', ' savage_card_body_header', 10 );
-			remove_action( 'savage/card/template/body/savage_custom_card', ' savage_card_label', 20 );
-			remove_action( 'savage/card/template/body/savage_custom_card', 'savage_card_heading', 30 );
-			remove_action( 'savage/card/template/body/savage_custom_card', 'savage_card_excerpt', 40 );
-			remove_action( 'savage/card/template/body/savage_custom_card', 'savage_card_linkteaser', 50 );
-
-			$layouts = get_field( 'card_content_flex', $args['id'] );
-			if ( empty( $layouts ) ) {
-				add_action( 'savage/card/template/header/savage_custom_card/' . $args['id'], 'savage_card_image', 10 );
-				add_action( 'savage/card/template/body/savage_custom_card/' . $args['id'], 'savage_card_body_header', 10 );
-				add_action( 'savage/card/template/body/savage_custom_card/' . $args['id'], 'savage_card_heading', 30 );
-				add_action( 'savage/card/template/body/savage_custom_card/' . $args['id'], 'savage_card_label', 20 );
-				add_action( 'savage/card/template/body/savage_custom_card/' . $args['id'], 'savage_card_excerpt', 40 );
-				add_action( 'savage/card/template/body/savage_custom_card/' . $args['id'], 'savage_card_linkteaser', 50 );
-			}
-
-			return parent::get_markup( $args );
 		}
 
 		/**
@@ -285,5 +279,43 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 			return $link_title;
 		}
 
+	}
+}
+
+if ( ! class_exists( '\\Dekode\\Savage\\CustomCardFallback' ) && class_exists( '\\Dekode\\Savage\\Card' ) ) {
+
+	/**
+	 * Custom card fallback card class.
+	 *
+	 * @extends Card base class.
+	 */
+	class CustomCardFallback extends Card { // phpcs:ignore
+		/**
+		 * Card constructor.
+		 */
+		public function __construct() {
+			$this->components = [
+				'image',
+				'body-header',
+				'label',
+				'heading',
+				'excerpt',
+				'linkteaser',
+			];
+
+			add_action( 'savage/card/template/footer/custom_fallback_card', [ $this, 'link' ], 10 );
+
+			parent::__construct( 'custom_fallback_card' );
+		}
+
+		/**
+		 * Link
+		 *
+		 * @param array $args Component args.
+		 */
+		public function link( $args ) {
+			$link = get_post_meta( $args['id'], 'card_link', true );
+			savage_card_component( 'link', $link );
+		}
 	}
 }

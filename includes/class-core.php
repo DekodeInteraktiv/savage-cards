@@ -147,6 +147,7 @@ class Core {
 
 		savage_register_card( new \Dekode\Savage\DefaultCard() );
 		savage_register_card( new \Dekode\Savage\CustomCard() );
+		savage_register_card( new \Dekode\Savage\CustomCardFallback() );
 	}
 
 	/**
