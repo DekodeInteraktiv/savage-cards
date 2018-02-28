@@ -6,7 +6,9 @@
 	</rule>
 	<rule ref="WordPress-Docs" />
 	<rule ref="WordPress-Extra" />
-	<rule ref="WordPress-VIP" />
+	<rule ref="WordPress-VIP">
+		<exclude name="WordPress.VIP.RestrictedFunctions.url_to_postid_url_to_postid" />
+	</rule>
 	<rule ref="PHPCompatibility" />
 
 	<rule ref="WordPress.XSS.EscapeOutput">
