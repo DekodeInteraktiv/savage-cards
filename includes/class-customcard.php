@@ -208,7 +208,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		 * @param int $id Post id.
 		 * @return bool True if post has custom content, otherwise false.
 		 */
-		private function has_custom_content( $id ) {
+		private function has_custom_content( int $id ) : bool {
 			return ! empty( get_post_meta( $id, 'card_content_flex', true ) );
 		}
 
@@ -217,7 +217,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		 *
 		 * @param array $args Component args.
 		 */
-		public function template_header( $args ) {
+		public function template_header( array $args ) {
 			if ( ! $this->has_custom_content( $args['id'] ) ) {
 				do_action( 'savage/card/template/header/custom_fallback_card', $args );
 			}
@@ -228,7 +228,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		 *
 		 * @param array $args Component args.
 		 */
-		public function template_body( $args ) {
+		public function template_body( array $args ) {
 			if ( ! $this->has_custom_content( $args['id'] ) ) {
 				do_action( 'savage/card/template/body/custom_fallback_card', $args );
 			} else {
@@ -248,7 +248,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		 *
 		 * @param array $args Component args.
 		 */
-		public function template_footer( $args ) {
+		public function template_footer( array $args ) {
 			if ( ! $this->has_custom_content( $args['id'] ) ) {
 				do_action( 'savage/card/template/footer/custom_fallback_card', $args );
 			} else {
