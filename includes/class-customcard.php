@@ -38,9 +38,9 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 			add_filter( 'acf/fields/wysiwyg/toolbars', [ $this, 'append_card_toolbar' ] );
 			add_action( 'acf/include_fields', [ $this, 'register_field_group' ] );
 
-			add_action( 'savage/card/template/header/' . $this->post_type, [ $this, 'template_header' ], 10 );
-			add_action( 'savage/card/template/body/' . $this->post_type, [ $this, 'template_body' ], 10 );
-			add_action( 'savage/card/template/footer/' . $this->post_type, [ $this, 'template_footer' ], 10 );
+			add_action( 'savage/card/template/header/' . $this->post_type, [ $this, 'template_header' ] );
+			add_action( 'savage/card/template/body/' . $this->post_type, [ $this, 'template_body' ] );
+			add_action( 'savage/card/template/footer/' . $this->post_type, [ $this, 'template_footer' ] );
 
 			parent::__construct( $this->post_type );
 		}
