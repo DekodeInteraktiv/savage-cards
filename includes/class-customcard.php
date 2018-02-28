@@ -231,12 +231,13 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 			$link    = get_post_meta( $args['id'], 'card_link', true );
 			if ( empty( $layouts ) ) {
 				savage_card_component( 'link', $link );
-			} elseif ( ! empty( $link['title'] ) ) {
+			} else {
+				$title = $this->get_link_field_title( $link );
 				printf(
 					'<a href="%s" class="savage-card-teaser"%s>%s</a>',
 					esc_url( $link['url'] ),
 					! empty( $link['target'] ) ? sprintf( ' target="%s"', esc_attr( $link['target'] ) ) : '',
-					esc_html( $link['title'] )
+					esc_html( $title )
 				);
 			}
 		}
@@ -266,6 +267,22 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 			}
 
 			return parent::get_markup( $args );
+		}
+
+		/**
+		 * Get post title from URL if title is empty.
+		 *
+		 * @param array $link_values The link field array.
+		 */
+		function get_link_field_title( $link_values ) {
+			if ( empty( $link_values['title'] ) && false !== strpos( $link_values['url'], home_url() ) ) {
+				$link_title = get_the_title( url_to_postid( $link_values['url'] ) );
+			} elseif ( empty( $link_values['title'] ) ) {
+				$link_title = $link_values['url'];
+			} else {
+				$link_title = $link_values['title'];
+			}
+			return $link_title;
 		}
 
 	}
