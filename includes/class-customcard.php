@@ -274,7 +274,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		 *
 		 * @param array $link_values The link field array.
 		 */
-		function get_link_field_title( $link_values ) {
+		protected function get_link_field_title( $link_values ) {
 			if ( empty( $link_values['title'] ) && false !== strpos( $link_values['url'], home_url() ) ) {
 				$link_title = get_the_title( url_to_postid( $link_values['url'] ) );
 			} elseif ( empty( $link_values['title'] ) ) {
