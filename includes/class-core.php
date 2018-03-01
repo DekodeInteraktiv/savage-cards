@@ -254,7 +254,7 @@ class Core {
 				'label'        => __( 'Excerpt', 'savage-cards' ),
 				'name'         => 'savage_excerpt',
 				'type'         => 'textarea',
-				'instructions' => __( 'Max xx chars.', 'savage-cards' ),
+				'instructions' => '',
 				'required'     => 0,
 				'maxlength'    => '',
 				'rows'         => 3,
