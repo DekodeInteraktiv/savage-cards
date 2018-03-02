@@ -12,14 +12,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( ! class_exists( '\\Dekode\\Savage\\CustomCardFallback' ) && class_exists( '\\Dekode\\Savage\\Card' ) ) {
+if ( ! class_exists( '\\Dekode\\Savage\\CustomCardDefault' ) && class_exists( '\\Dekode\\Savage\\Card' ) ) {
 
 	/**
 	 * Custom card fallback card class.
 	 *
 	 * @extends Card base class.
 	 */
-	class CustomCardFallback extends Card {
+	class CustomCardDefault extends Card {
 		/**
 		 * Card constructor.
 		 */
@@ -33,9 +33,9 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCardFallback' ) && class_exists( '
 				'linkteaser',
 			];
 
-			add_action( 'savage/card/template/footer/custom_fallback_card', [ $this, 'link' ], 10 );
+			add_action( 'savage/card/template/footer/custom_card_default', [ $this, 'link' ], 10 );
 
-			parent::__construct( 'custom_fallback_card' );
+			parent::__construct( 'custom_card_default' );
 		}
 
 		/**

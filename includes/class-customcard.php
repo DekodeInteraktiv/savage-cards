@@ -219,7 +219,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		 */
 		public function template_header( array $args ) {
 			if ( ! $this->has_custom_content( $args['id'] ) ) {
-				do_action( 'savage/card/template/header/custom_fallback_card', $args );
+				do_action( 'savage/card/template/header/custom_card_default', $args );
 			}
 		}
 
@@ -230,7 +230,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		 */
 		public function template_body( array $args ) {
 			if ( ! $this->has_custom_content( $args['id'] ) ) {
-				do_action( 'savage/card/template/body/custom_fallback_card', $args );
+				do_action( 'savage/card/template/body/custom_card_default', $args );
 			} else {
 				$layouts = get_field( 'card_content_flex', $args['id'] );
 				// Only one layout possible on a card.
@@ -254,7 +254,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		 */
 		public function template_footer( array $args ) {
 			if ( ! $this->has_custom_content( $args['id'] ) ) {
-				do_action( 'savage/card/template/footer/custom_fallback_card', $args );
+				do_action( 'savage/card/template/footer/custom_card_default', $args );
 			} else {
 				$link  = get_post_meta( $args['id'], 'card_link', true );
 				$title = $this->get_link_field_title( $link );
