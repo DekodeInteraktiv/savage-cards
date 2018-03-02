@@ -240,6 +240,10 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 				if ( 'card_content' === $active_layout['acf_fc_layout'] ) {
 					echo wp_kses_post( $active_layout['content'] );
 				}
+
+				savage_card_add_classname( 'savage-has-layout' );
+				savage_card_add_classname( 'savage-layout-' . esc_attr( $active_layout['acf_fc_layout'] ) );
+
 			}
 		}
 
