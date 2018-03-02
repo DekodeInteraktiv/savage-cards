@@ -42,6 +42,8 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 			add_action( 'savage/card/template/body/' . $this->post_type, [ $this, 'template_body' ] );
 			add_action( 'savage/card/template/footer/' . $this->post_type, [ $this, 'template_footer' ] );
 
+			add_filter( 'hogan/module/grid/static_content_post_types', [ $this, 'register_hogan_grid_static_post_types' ], 99 );
+
 			parent::__construct( $this->post_type );
 		}
 
@@ -84,6 +86,17 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 					'menu_icon'           => 'dashicons-portfolio',
 				]
 			);
+		}
+
+		/**
+		 * Register post type to Hogan Grid static posts.
+		 *
+		 * @param array $post_types Registered Post Types.
+		 * @return array
+		 */
+		public function register_hogan_grid_static_post_types( array $post_types ) : array {
+			$post_types[] = $this->post_type;
+			return $post_types;
 		}
 
 		/**
