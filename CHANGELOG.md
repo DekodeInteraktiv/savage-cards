@@ -1,7 +1,8 @@
 # Changelog
 
-## Unreleased
+## 1.0.8
 - Auto register custom cards to [Hogan-Grid](https://github.com/DekodeInteraktiv/hogan-grid) static cards relationship field.
+- Custom cards can have layouts or use default card components.
 
 ## 1.0.7
 - Added meta component. See [#31](https://github.com/DekodeInteraktiv/savage-cards/pull/31)
