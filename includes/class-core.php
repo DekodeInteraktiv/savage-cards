@@ -308,6 +308,7 @@ class Core {
 				'fields'         => $field_group_fields,
 				'location'       => apply_filters( 'savage/card/meta/locations', $location ),
 				'position'       => 'side',
+				'menu_order'     => 99,
 				'hide_on_screen' => apply_filters( 'savage/card/field_group/hide_on_screen', [] ),
 			]
 		);
