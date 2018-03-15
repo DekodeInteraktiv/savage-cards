@@ -129,7 +129,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 							'conditional_logic' => 0,
 							'choices'           => apply_filters(
 								'savage/card/custom/bg_color_options', [
-									'bg_default' => __( 'Default', 'savage-cards' ),
+									'default' => __( 'Default', 'savage-cards' ),
 								]
 							),
 							'default_value'     => [],
@@ -233,6 +233,12 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 		public function template_header( array $args ) {
 			if ( ! $this->has_custom_content( $args['id'] ) ) {
 				do_action( 'savage/card/template/header/custom_card_default', $args );
+			}
+
+			$bg_color = get_post_meta( $args['id'], 'card_background', true );
+			if ( ! empty( $bg_color ) ) {
+				savage_card_add_classname( 'savage-has-background' );
+				savage_card_add_classname( $bg_color );
 			}
 		}
 
