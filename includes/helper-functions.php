@@ -75,7 +75,7 @@ function savage_get_card( array $args = [] ) : array {
  * @param string $classname Classname.
  */
 function savage_card_add_classname( string $classname ) {
-	\Dekode\Savage\Classnames::get_instance()->add_classname( $classname );
+	\Dekode\Savage\Classnames::get_instance()->add_classname( sanitize_html_class( $classname ) );
 }
 
 /**
