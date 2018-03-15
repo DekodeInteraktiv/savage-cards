@@ -238,7 +238,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 			$bg_color = get_post_meta( $args['id'], 'card_background', true );
 			if ( ! empty( $bg_color ) ) {
 				savage_card_add_classname( 'savage-has-background' );
-				savage_card_add_classname( $bg_color );
+				savage_card_add_classname( 'savage-bg-' . $bg_color );
 			}
 		}
 
