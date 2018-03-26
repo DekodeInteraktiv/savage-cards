@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.10
+- Add classes for background color on custom card.
+
 ## 1.0.9
 - Add menu order to field group [#39](https://github.com/DekodeInteraktiv/savage-cards/pull/39)
 
