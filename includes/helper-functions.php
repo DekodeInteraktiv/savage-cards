@@ -150,3 +150,54 @@ function savage_attributes( array $attr = [] ) : string {
 
 	return $attributes;
 }
+
+/**
+ * Cached version of url_to_postid, which can be expensive.
+ *
+ * Examine a url and try to determine the post ID it represents.
+ *
+ * @param string $url Permalink to check.
+ * @return int Post ID, or 0 on failure.
+ */
+function savage_url_to_postid( string $url ) : int {
+	// Sanity check; no URLs not from this site.
+	if ( wp_parse_url( $url, PHP_URL_HOST ) !== wp_parse_url( home_url(), PHP_URL_HOST ) ) {
+		return 0;
+	}
+
+	$cache_key = md5( $url );
+	$post_id   = wp_cache_get( $cache_key, 'url_to_postid' );
+
+	if ( false === $post_id ) {
+		$post_id = url_to_postid( $url ); // phpcs:ignore
+		wp_cache_set( $cache_key, $post_id, 'url_to_postid', 3 * HOUR_IN_SECONDS );
+	}
+
+	return (int) $post_id;
+}
+
+/**
+ * Get link title from link field
+ *
+ * @param array $link Link field.
+ * @return string Link title.
+ */
+function savage_get_link_title( array $link ) : string {
+	// Return early if link title already exists.
+	if ( ! empty( $link['title'] ) ) {
+		return $link['title'];
+	}
+
+	// Try find post id based on url and return post title if found.
+	$post_id = hogan_url_to_postid( $link['url'] );
+	if ( 0 !== $post_id ) {
+		$title = get_the_title( $post_id );
+		// Check if the post does have a title.
+		if ( ! empty( $title ) ) {
+			return $title;
+		}
+	}
+
+	// Return url as a last resort.
+	return $link['url'];
+}
