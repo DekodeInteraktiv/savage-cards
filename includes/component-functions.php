@@ -229,3 +229,42 @@ if ( ! function_exists( 'savage_card_linkteaser' ) ) {
 		}
 	}
 }
+
+if ( ! function_exists( 'savage_custom_card_layout' ) ) {
+	/**
+	 * Custom card layout
+	 *
+	 * @param array $args Component args.
+	 */
+	function savage_custom_card_layout( $args ) {
+		$layouts = get_field( 'card_content_flex', $args['id'] );
+		// Only one layout possible on a card.
+		$active_layout = reset( $layouts );
+		do_action( 'savage/card/custom/body/layout_content', $active_layout );
+
+		if ( 'card_content' === $active_layout['acf_fc_layout'] ) {
+			echo wp_kses_post( $active_layout['content'] );
+		}
+
+		savage_card_add_classname( 'savage-has-layout' );
+		savage_card_add_classname( 'savage-layout-' . esc_attr( $active_layout['acf_fc_layout'] ) );
+	}
+}
+
+if ( ! function_exists( 'savage_custom_card_link' ) ) {
+	/**
+	 * Custom card link
+	 *
+	 * @param array $args Component args.
+	 */
+	function savage_custom_card_link( $args ) {
+		$link  = get_post_meta( $args['id'], 'card_link', true );
+		$title = savage_get_link_title( $link );
+		printf(
+			'<a href="%s" class="savage-card-teaser"%s>%s</a>',
+			esc_url( $link['url'] ),
+			! empty( $link['target'] ) ? sprintf( ' target="%s"', esc_attr( $link['target'] ) ) : '',
+			esc_html( $title )
+		);
+	}
+}

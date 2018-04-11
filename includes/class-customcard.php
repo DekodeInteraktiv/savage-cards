@@ -42,6 +42,9 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 			add_action( 'savage/card/template/body/' . $this->post_type, [ $this, 'template_body' ] );
 			add_action( 'savage/card/template/footer/' . $this->post_type, [ $this, 'template_footer' ] );
 
+			add_action( 'savage/card/template/body/custom_card_content', 'savage_custom_card_layout', 10 );
+			add_action( 'savage/card/template/footer/custom_card_content', 'savage_custom_card_link', 10 );
+
 			add_filter( 'hogan/module/grid/static_content_post_types', [ $this, 'register_hogan_grid_static_post_types' ], 99 );
 
 			parent::__construct( $this->post_type );
@@ -251,18 +254,10 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 			if ( ! $this->has_custom_content( $args['id'] ) ) {
 				do_action( 'savage/card/template/body/custom_card_default', $args );
 			} else {
-				$layouts = get_field( 'card_content_flex', $args['id'] );
-				// Only one layout possible on a card.
-				$active_layout = reset( $layouts );
-				do_action( 'savage/card/custom/body/layout_content', $active_layout );
-
-				if ( 'card_content' === $active_layout['acf_fc_layout'] ) {
-					echo wp_kses_post( $active_layout['content'] );
-				}
-
-				savage_card_add_classname( 'savage-has-layout' );
-				savage_card_add_classname( 'savage-layout-' . esc_attr( $active_layout['acf_fc_layout'] ) );
-
+				/*
+				 * @hooked savage_custom_card_layout - 10
+				 */
+				do_action( 'savage/card/template/body/custom_card_content', $args );
 			}
 		}
 
@@ -275,32 +270,11 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCard' ) && class_exists( '\\Dekode
 			if ( ! $this->has_custom_content( $args['id'] ) ) {
 				do_action( 'savage/card/template/footer/custom_card_default', $args );
 			} else {
-				$link  = get_post_meta( $args['id'], 'card_link', true );
-				$title = $this->get_link_field_title( $link );
-				printf(
-					'<a href="%s" class="savage-card-teaser"%s>%s</a>',
-					esc_url( $link['url'] ),
-					! empty( $link['target'] ) ? sprintf( ' target="%s"', esc_attr( $link['target'] ) ) : '',
-					esc_html( $title )
-				);
+				/*
+				 * @hooked savage_custom_card_link - 10
+				 */
+				do_action( 'savage/card/template/footer/custom_card_content', $args );
 			}
 		}
-
-		/**
-		 * Get post title from URL if title is empty.
-		 *
-		 * @param array $link_values The link field array.
-		 */
-		protected function get_link_field_title( $link_values ) {
-			if ( empty( $link_values['title'] ) && false !== strpos( $link_values['url'], home_url() ) ) {
-				$link_title = get_the_title( url_to_postid( $link_values['url'] ) );
-			} elseif ( empty( $link_values['title'] ) ) {
-				$link_title = $link_values['url'];
-			} else {
-				$link_title = $link_values['title'];
-			}
-			return $link_title;
-		}
-
 	}
 }
