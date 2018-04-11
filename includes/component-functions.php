@@ -259,7 +259,7 @@ if ( ! function_exists( 'savage_custom_card_link' ) ) {
 	 */
 	function savage_custom_card_link( $args ) {
 		$link  = get_post_meta( $args['id'], 'card_link', true );
-		$title = hogan_get_link_title( $link );
+		$title = savage_get_link_title( $link );
 		printf(
 			'<a href="%s" class="savage-card-teaser"%s>%s</a>',
 			esc_url( $link['url'] ),
