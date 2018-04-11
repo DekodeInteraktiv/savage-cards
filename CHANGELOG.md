@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.11
+- Moved custom card content into actions so themes can unregister/register their own content [#42](https://github.com/DekodeInteraktiv/savage-cards/pull/42)
+
 ## 1.0.10
 - Add classes for background color on custom card.
 
