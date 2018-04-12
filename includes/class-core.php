@@ -186,7 +186,7 @@ class Core {
 				'label'             => __( 'Alternative image:', 'savage-cards' ),
 				'name'              => 'savage_image',
 				'type'              => 'image',
-				'required'          => 1,
+				'required'          => 0,
 				'conditional_logic' => [
 					[
 						[
