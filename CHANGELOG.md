@@ -1,7 +1,10 @@
 # Changelog
 
+## 1.0.13
+- Added default link text on custom cards. [#48](https://github.com/DekodeInteraktiv/savage-cards/pull/48)
+
 ## 1.0.12
-- removed required constraint on alternativ image in card meta box because it caused Gutenberg to break. 
+- Removed required constraint on alternativ image in card meta box because it caused Gutenberg to break.
 
 ## 1.0.11
 - Moved custom card content into actions so themes can unregister/register their own content [#42](https://github.com/DekodeInteraktiv/savage-cards/pull/42)
