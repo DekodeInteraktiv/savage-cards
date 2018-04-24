@@ -152,6 +152,16 @@ function savage_attributes( array $attr = [] ) : string {
 }
 
 /**
+ * Get post title
+ *
+ * @param int $id Post id.
+ * @return string Post title
+ */
+function savage_card_get_title( int $id ) : string {
+	return get_post_meta( $id, 'savage_title', true ) ?: get_the_title( $id );
+}
+
+/**
  * Cached version of url_to_postid, which can be expensive.
  *
  * Examine a url and try to determine the post ID it represents.
@@ -179,10 +189,11 @@ function savage_url_to_postid( string $url ) : int {
 /**
  * Get link title from link field
  *
- * @param array $link Link field.
+ * @param array  $link Link field.
+ * @param string $fallback Fallback link text if no text is found.
  * @return string Link title.
  */
-function savage_get_link_title( array $link ) : string {
+function savage_get_link_title( array $link, string $fallback = '' ) : string {
 	// Return early if link title already exists.
 	if ( ! empty( $link['title'] ) ) {
 		return $link['title'];
@@ -196,6 +207,10 @@ function savage_get_link_title( array $link ) : string {
 		if ( ! empty( $title ) ) {
 			return $title;
 		}
+	}
+
+	if ( ! empty( $fallback ) ) {
+		return $fallback;
 	}
 
 	// Return url as a last resort.

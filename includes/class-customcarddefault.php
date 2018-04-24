@@ -53,7 +53,9 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCardDefault' ) && class_exists( '\
 					$args
 				);
 
-				$link['title'] = sprintf( $link_text, savage_get_link_title( $link ) );
+				$fallback_title = savage_card_get_title( $args['id'] );
+
+				$link['title'] = sprintf( $link_text, savage_get_link_title( $link, $fallback_title ) );
 			}
 
 			savage_card_component( 'link', $link );
