@@ -45,6 +45,17 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCardDefault' ) && class_exists( '\
 		 */
 		public function link( array $args ) {
 			$link = get_post_meta( $args['id'], 'card_link', true );
+
+			if ( empty( $link['title'] ) ) {
+				$link_text = (string) apply_filters( 'savage/card/components/savage_link/text',
+					/* translators: A11y card link text */
+					__( 'Read article &quot;%s&quot;', 'savage-card' ),
+					$args
+				);
+
+				$link['title'] = sprintf( $link_text, savage_get_link_title( $link ) );
+			}
+
 			savage_card_component( 'link', $link );
 		}
 	}
