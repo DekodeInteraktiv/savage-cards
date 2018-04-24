@@ -165,7 +165,7 @@ if ( ! function_exists( 'savage_card_heading' ) ) {
 	 * @param array $args Component args.
 	 */
 	function savage_card_heading( $args ) {
-		$title = get_post_meta( $args['id'], 'savage_title', true ) ?: get_the_title( $args['id'] );
+		$title = savage_card_get_title( $args['id'] );
 
 		if ( ! empty( $title ) ) {
 			savage_card_component( 'heading', [
