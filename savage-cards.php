@@ -4,7 +4,7 @@
  * Plugin URI: https://github.com/dekodeinteraktiv/savage-cards
  * GitHub Plugin URI: https://github.com/dekodeinteraktiv/savage-cards
  * Description: Card setup plugin
- * Version: 1.0.12
+ * Version: 1.0.13
  * Author: Dekode
  * Author URI: https://dekode.no
  * License: GPL-3.0-or-later
