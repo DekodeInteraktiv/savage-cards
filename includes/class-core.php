@@ -218,6 +218,7 @@ class Core {
 					'manual' => __( 'Manual', 'savage-cards' ),
 					'none'   => __( 'No label', 'savage-cards' ),
 				],
+				'default_value' => 'auto',
 				'allow_null'    => 0,
 				'multiple'      => 0,
 				'ui'            => 0,

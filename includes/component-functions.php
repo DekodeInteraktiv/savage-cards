@@ -138,13 +138,13 @@ if ( ! function_exists( 'savage_card_label' ) ) {
 				$label = get_post_meta( $args['id'], 'savage_label_text', true ) ?? '';
 				break;
 
-			case 'auto':
-				$post_type_label = get_post_type_object( get_post_type( $args['id'] ) )->labels->singular_name;
-				$label           = apply_filters( 'savage/card/components/label/auto', $post_type_label, $args['id'] );
+			case 'none':
+				$label = '';
 				break;
 
 			default:
-				$label = '';
+				$post_type_label = get_post_type_object( get_post_type( $args['id'] ) )->labels->singular_name;
+				$label           = apply_filters( 'savage/card/components/label/auto', $post_type_label, $args['id'] );
 				break;
 		}
 
