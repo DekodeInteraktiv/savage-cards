@@ -5,13 +5,15 @@
  * @package Savage
  */
 
+declare( strict_types = 1 );
+
 if ( ! function_exists( 'savage_card_image' ) ) {
 	/**
 	 * Image
 	 *
 	 * @param array $args Component args.
 	 */
-	function savage_card_image( $args ) {
+	function savage_card_image( array $args ) : void {
 		$image_type = (string) get_post_meta( $args['id'], 'savage_image_type', true );
 
 		$default_image_size = 'full' === $args['size'] ? 'large' : 'medium_large';
@@ -51,7 +53,7 @@ if ( ! function_exists( 'savage_card_meta' ) ) {
 	 *
 	 * @param array $args Component args.
 	 */
-	function savage_card_meta( $args ) {
+	function savage_card_meta( array $args ) : void {
 		$content = (string) apply_filters( 'savage/card/components/meta', '', $args );
 
 		if ( ! empty( $content ) ) {
@@ -68,7 +70,7 @@ if ( ! function_exists( 'savage_card_icon' ) ) {
 	 *
 	 * @param array $args Component args.
 	 */
-	function savage_card_icon( $args ) {
+	function savage_card_icon( array $args ) {
 		$icon = (string) apply_filters( 'savage/card/components/icon', '', $args );
 
 		if ( ! empty( $icon ) ) {
@@ -85,7 +87,7 @@ if ( ! function_exists( 'savage_card_avatar' ) ) {
 	 *
 	 * @param array $args Component args.
 	 */
-	function savage_card_avatar( $args ) {
+	function savage_card_avatar( array $args ) {
 		$id = (int) absint( apply_filters( 'savage/card/components/avatar', 0, $args ) );
 
 		if ( 0 !== $id ) {
@@ -102,7 +104,7 @@ if ( ! function_exists( 'savage_card_body_header' ) ) {
 	 *
 	 * @param array $args Component args.
 	 */
-	function savage_card_body_header( $args ) {
+	function savage_card_body_header( array $args ) {
 		$components = (array) apply_filters( 'savage/card/components/body_header/components', [
 			'savage_card_icon',
 			'savage_card_avatar',
@@ -130,7 +132,7 @@ if ( ! function_exists( 'savage_card_label' ) ) {
 	 *
 	 * @param array $args Component args.
 	 */
-	function savage_card_label( $args ) {
+	function savage_card_label( array $args ) {
 		$label_type = get_post_meta( $args['id'], 'savage_label', true ) ?? '';
 
 		switch ( $label_type ) {
@@ -164,7 +166,7 @@ if ( ! function_exists( 'savage_card_heading' ) ) {
 	 *
 	 * @param array $args Component args.
 	 */
-	function savage_card_heading( $args ) {
+	function savage_card_heading( array $args ) : void {
 		$title = savage_card_get_title( $args['id'] );
 
 		if ( ! empty( $title ) ) {
@@ -182,7 +184,7 @@ if ( ! function_exists( 'savage_card_excerpt' ) ) {
 	 *
 	 * @param array $args Component args.
 	 */
-	function savage_card_excerpt( $args ) {
+	function savage_card_excerpt( array $args ) : void {
 		$excerpt = get_post_meta( $args['id'], 'savage_excerpt', true );
 
 		if ( ! empty( $excerpt ) ) {
@@ -199,10 +201,10 @@ if ( ! function_exists( 'savage_card_link' ) ) {
 	 *
 	 * @param array $args Component args.
 	 */
-	function savage_card_link( $args ) {
+	function savage_card_link( array $args ) : void {
 		$link_text = (string) apply_filters( 'savage/card/components/savage_link/text',
 			/* translators: A11y card link text */
-			__( 'Read article &quot;%s&quot;', 'savage-card' ),
+			__( 'Read article &quot;%s&quot;', 'savage-cards' ),
 			$args
 		);
 
@@ -219,7 +221,7 @@ if ( ! function_exists( 'savage_card_linkteaser' ) ) {
 	 *
 	 * @param array $args Component args.
 	 */
-	function savage_card_linkteaser( $args ) {
+	function savage_card_linkteaser( array $args ) : void {
 		$savage_teaser = apply_filters( 'savage/card/components/savage_link/teaser', get_post_meta( $args['id'], 'savage_link_title', true ), $args );
 
 		if ( ! empty( $savage_teaser ) ) {
@@ -236,7 +238,7 @@ if ( ! function_exists( 'savage_custom_card_layout' ) ) {
 	 *
 	 * @param array $args Component args.
 	 */
-	function savage_custom_card_layout( $args ) {
+	function savage_custom_card_layout( array $args ) : void {
 		$layouts = get_field( 'card_content_flex', $args['id'] );
 		// Only one layout possible on a card.
 		$active_layout = reset( $layouts );
@@ -257,7 +259,7 @@ if ( ! function_exists( 'savage_custom_card_link' ) ) {
 	 *
 	 * @param array $args Component args.
 	 */
-	function savage_custom_card_link( $args ) {
+	function savage_custom_card_link( array $args ) : void {
 		$link  = get_post_meta( $args['id'], 'card_link', true );
 		$title = savage_get_link_title( $link );
 		printf(

@@ -5,6 +5,8 @@
  * @package Savage
  */
 
+declare( strict_types = 1 );
+
 if ( ! isset( $args ) || ! is_array( $args ) ) {
 	return;
 }

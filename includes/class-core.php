@@ -342,7 +342,7 @@ class Core {
 	 * @param string       $key Component key.
 	 * @param array|string $component Component or component key.
 	 */
-	private function get_component( $key, $component ) {
+	private function get_component( $key, $component ) { // phpcs:ignore
 		if ( is_array( $component ) && isset( $this->_components[ $key ] ) ) {
 			return wp_parse_args( $component, $this->_components[ $key ] );
 		} elseif ( isset( $this->_components[ $component ] ) ) {
@@ -373,7 +373,7 @@ class Core {
 	 *
 	 * @param string $type Card type.
 	 */
-	public function get_card( $type ) {
+	public function get_card( $type ) { // phpcs:ignore
 		if ( in_array( $type, $this->_default_card_post_types, true ) ) {
 			$type = $this->_default_card;
 		}

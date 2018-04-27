@@ -35,7 +35,7 @@ function savage_register_card( \Dekode\Savage\Card $card ) {
  *
  * @param array $args Card options.
  */
-function savage_card_get_markup( array $args = [] ) {
+function savage_card_get_markup( array $args = [] ) : string {
 	$args = wp_parse_args( $args, [
 		'id'   => 0,
 		'size' => 'small',
@@ -43,7 +43,7 @@ function savage_card_get_markup( array $args = [] ) {
 	] );
 
 	if ( 0 === $args['id'] ) {
-		return;
+		return null;
 	}
 
 	$card = \Dekode\Savage\Core::get_instance()->get_card( $args['type'] );

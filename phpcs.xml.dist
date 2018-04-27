@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<ruleset name="Savage Coding Standards">
+	<description>Write code using Dekodes's standards and Savage will stay happy!</description>
+	<file>.</file>
+	<arg name="extensions" value="php" />
+	<config name="text_domain" value="savage-cards" />
+	<rule ref="Dekode">
+		<properties>
+		    <property name="customAutoEscapedFunctions" value="savage_attributes" type="string" />
+		</properties>
+	</rule>
+</ruleset>

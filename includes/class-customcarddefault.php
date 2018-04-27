@@ -49,7 +49,7 @@ if ( ! class_exists( '\\Dekode\\Savage\\CustomCardDefault' ) && class_exists( '\
 			if ( empty( $link['title'] ) ) {
 				$link_text = (string) apply_filters( 'savage/card/components/savage_link/text',
 					/* translators: A11y card link text */
-					__( 'Read article &quot;%s&quot;', 'savage-card' ),
+					__( 'Read article &quot;%s&quot;', 'savage-cards' ),
 					$args
 				);
 
