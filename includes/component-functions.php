@@ -33,7 +33,7 @@ if ( ! function_exists( 'savage_card_image' ) ) {
 				}
 				break;
 			default:
-				$url = get_the_post_thumbnail_url( $args['id'], $image_size );
+				$url = apply_filters( 'savage/card/components/image/url', get_the_post_thumbnail_url( $args['id'], $image_size ) );
 				break;
 		}
 
