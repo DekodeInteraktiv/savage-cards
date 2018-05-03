@@ -64,6 +64,7 @@ class Core {
 		add_action( 'after_setup_theme', [ $this, 'register_cards' ] );
 
 		add_action( 'savage/register_cards', [ $this, 'register_core_cards' ] );
+		add_action( 'savage/card/template/init', [ $this, 'add_theme_classname' ], 10, 2 );
 	}
 
 	/**
@@ -275,6 +276,41 @@ class Core {
 			],
 		];
 
+		/**
+		 * Filters the choices for card themes
+		 *
+		 * The selected choice key will be returned in the
+		 * `savage_card_get_classnames` function.
+		 *
+		 * @param array $choices Theme choices.
+		 */
+		$theme_choices = apply_filters( 'savage/card/themes', [] );
+
+		if ( ! empty( $theme_choices ) ) {
+			$meta_fields[] = [
+				'key'               => 'savage_card_field_theme',
+				'label'             => __( 'Theme', 'savage-cards' ),
+				'name'              => 'savage_theme',
+				'type'              => 'select',
+				'instructions'      => '',
+				'required'          => 0,
+				'conditional_logic' => 0,
+				'wrapper'           => [
+					'width' => 100,
+					'class' => '',
+					'id'    => '',
+				],
+				'choices'           => $theme_choices,
+				'default_value'     => '',
+				'allow_null'        => 1,
+				'multiple'          => 0,
+				'ui'                => 0,
+				'ajax'              => 0,
+				'return_format'     => 'value',
+				'placeholder'       => '',
+			];
+		}
+
 		$location = [
 			[
 				[
@@ -379,5 +415,20 @@ class Core {
 		}
 
 		return isset( $this->_cards[ $type ] ) ? $this->_cards[ $type ] : false;
+	}
+
+	/**
+	 * Add theme classname
+	 *
+	 * @param string $name Card name.
+	 * @param array  $args Card arguments.
+	 * @return void
+	 */
+	public function add_theme_classname( string $name, array $args ) {
+		$theme = get_post_meta( $args['id'], 'savage_theme', true ) ?? '';
+
+		if ( ! empty( $theme ) ) {
+			savage_card_add_classname( 'savage-theme-' . $theme );
+		}
 	}
 }
