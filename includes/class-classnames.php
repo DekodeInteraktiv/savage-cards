@@ -39,7 +39,12 @@ if ( ! class_exists( '\\Dekode\\Savage\\Classnames' ) ) {
 		 */
 		public function __construct() {
 			$this->classnames = [];
-			add_action( 'savage/card/template/init', [ $this, 'reset_classnames' ] );
+
+			/*
+			 * Reset at 0 to be sure reset function is runned before we start
+			 * adding card classnames.
+			 */
+			add_action( 'savage/card/template/init', [ $this, 'reset_classnames' ], 0 );
 		}
 
 		/**

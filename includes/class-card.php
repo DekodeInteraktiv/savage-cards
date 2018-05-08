@@ -47,7 +47,7 @@ abstract class Card {
 	 * @param array $args Card option.
 	 */
 	public function get_markup( array $args = [] ) {
-		do_action( 'savage/card/template/init', $this->name );
+		do_action( 'savage/card/template/init', $this->name, $args );
 
 		ob_start();
 
