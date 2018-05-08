@@ -284,7 +284,7 @@ class Core {
 		 *
 		 * @param array $choices Theme choices.
 		 */
-		$theme_choices = apply_filters( 'savage/card/themes', [] );
+		$theme_choices = (array) apply_filters( 'savage/card/themes', [] );
 
 		if ( ! empty( $theme_choices ) ) {
 			$meta_fields[] = [
@@ -425,9 +425,15 @@ class Core {
 	 * @return void
 	 */
 	public function add_theme_classname( string $name, array $args ) {
+		$theme_choices = (array) apply_filters( 'savage/card/themes', [] );
+
+		if ( empty( $theme_choices ) ) {
+			return;
+		}
+
 		$theme = get_post_meta( $args['id'], 'savage_theme', true ) ?? '';
 
-		if ( ! empty( $theme ) ) {
+		if ( ! empty( $theme ) && isset( $theme_choices[ $theme ] ) ) {
 			savage_card_add_classname( 'savage-theme-' . $theme );
 		}
 	}
