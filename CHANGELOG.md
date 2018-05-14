@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.15
+- Added theme option field [#52](https://github.com/DekodeInteraktiv/savage-cards/pull/52)
+- Added filter to image url for featured image [#51](https://github.com/DekodeInteraktiv/savage-cards/pull/51)
+
 ## 1.0.13
 - Added default link text on custom cards. [#48](https://github.com/DekodeInteraktiv/savage-cards/pull/48)
 
