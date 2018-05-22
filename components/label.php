@@ -24,6 +24,6 @@ if ( empty( $args['label'] ) ) {
 savage_card_add_classname( 'savage-has-label' );
 
 printf(
-	'<p class="savage-card-label">%s</p>',
+	'<div class="savage-card-label-holder"><p class="savage-card-label">%s</p></div>',
 	esc_html( $args['label'] )
 );
