@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.16
+- Added a wrapper around label component [#53](https://github.com/DekodeInteraktiv/savage-cards/pull/53)
+
 ## 1.0.15
 - Added theme option field [#52](https://github.com/DekodeInteraktiv/savage-cards/pull/52)
 - Added filter to image url for featured image [#51](https://github.com/DekodeInteraktiv/savage-cards/pull/51)
